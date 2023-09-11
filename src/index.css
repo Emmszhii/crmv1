@@ -15,40 +15,85 @@
     @apply text-left text-sm font-black;
   }
   table thead th:first-child {
-    @apply w-8;
+    @apply w-8 text-center;
+  }
+  table tbody tr td:first-child {
+    @apply text-center;
   }
   table thead th:nth-child(2) {
-    @apply w-28;
+    @apply w-16;
   }
   table thead th:last-child {
-    @apply w-20 text-right;
+    @apply w-14 text-right;
   }
   table tbody tr {
-    @apply border-t-2 border-t-slate-200 last:border-b-2 last:border-b-slate-200 odd:bg-slate-100;
+    @apply border-t-2 border-t-slate-200 last:border-b-2 last:border-b-slate-200 odd:bg-slate-100 hover:bg-gray-100;
   }
   table tbody tr td {
     @apply py-2 font-thin text-sm;
   }
+  button:disabled {
+    @apply cursor-not-allowed opacity-50 hover:opacity-50;
+  }
+
+  .form__wrap {
+    @apply mb-4 relative;
+  }
+
+  .form__wrap span.error-show {
+    @apply absolute top-1 right-1 text-xs text-alert;
+  }
+
+  .form__wrap:has(.error-show) input,
+  .form__wrap:has(.error-show) select,
+  .form__wrap:has(.error-show) textarea {
+    @apply border-alert;
+  }
+
+  .form__wrap:has(.error-show) label {
+    @apply text-alert;
+  }
+
+  label {
+    @apply antialiased text-sm;
+  }
+  input,
+  select {
+    @apply border border-dark/50 p-2 rounded-lg w-full h-[40px] outline-none disabled:cursor-not-allowed text-[12px];
+  }
+  textarea {
+    @apply block border border-solid outline-none border-dark/50 p-2 rounded-lg w-full h-28 resize-none text-[12px];
+  }
+  input:disabled,
+  input:checkbox:disabled,
+  select:disabled,
+  textarea:disabled,
+  .disabled {
+    @apply bg-gray-100 border-gray-200 disabled:cursor-not-allowed !cursor-not-allowed hover:bg-gray-100 hover:text-inherit hover:border-gray-200;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    @apply border border-solid border-[#3e6fa5] bg-[#EDF4FD] outline-0;
+  }
 }
 
 @layer components {
-  .nav__link.active button {
-    @apply bg-primary text-white relative before:content-[''] before:w-5 before:h-full before:bg-primary before:absolute before:right-0 before:z-20 after:content-[''] after:z-10 after:w-0 after:h-0  after:absolute after:-right-[18px] after:-bottom-4 after:border-l-[18px] after:border-r-[18px] after:border-b-[18px] after:border-l-primaryShade after:border-r-transparent after:border-b-transparent;
-  }
-  .nav__link.active .sub__menu {
-    @apply bg-slate-100 h-28;
-  }
-  .sub__menu {
-    @apply ml-5 h-0 overflow-hidden transition-all;
-  }
-  .sub__menu ul {
-    @apply ml-9;
-  }
   .main__grid {
-    @apply grid grid-cols-[300px_1fr];
+    @apply grid grid-cols-[280px_1fr];
   }
   .main__grid main {
     @apply bg-slate-100;
+  }
+  .nav__link.active button {
+    @apply bg-primary text-white relative before:content-[''] before:w-5 before:h-full before:bg-primary before:top-0 before:absolute before:-right-4 before:z-20 after:content-[''] after:z-10 after:w-0 after:h-0 after:absolute after:-right-12 after:-bottom-[11px] after:border-l-[16px] after:border-r-[31.84px] after:border-b-[11.5px] after:border-l-primaryShade after:border-r-transparent after:border-b-transparent;
+  }
+  .nav__link.active .sub__menu {
+    @apply bg-slate-100 h-fit;
+  }
+  .sub__menu {
+    @apply pl-9 h-0 overflow-hidden transition-all;
   }
   .sub__link {
     @apply text-sm font-light py-1;
@@ -64,5 +109,39 @@
   }
   .breadcrumbs li:last-child a {
     @apply before:hidden;
+  }
+  .modal__main {
+    @apply flex flex-col;
+  }
+  .table__action {
+    @apply flex items-center justify-center gap-2 text-base;
+  }
+  .tooltip {
+    @apply flex justify-center items-center cursor-pointer relative whitespace-nowrap;
+  }
+
+  .tooltip:hover::after,
+  .tooltip:hover::before {
+    @apply opacity-100;
+  }
+
+  .tooltip::after {
+    @apply content-[attr(data-tooltip)] absolute -top-[20px] text-[10px]  left-1/2  -translate-x-1/2  bg-black  bg-opacity-70 py-[4px] px-1.5 text-white  rounded-md opacity-0 leading-none;
+  }
+
+  .btn {
+    @apply inline-block py-2 px-8 rounded-md transition-all;
+  }
+  .btn.btn--primary {
+    @apply bg-secondary text-white text-sm font-thin hover:bg-secondary/90;
+  }
+  .btn.btn--outline {
+    @apply bg-transparent text-dark border-2 hover:bg-gray-100;
+  }
+  .btn.btn--warning {
+    @apply bg-warning text-white hover:bg-warning/80;
+  }
+  .btn.btn--success {
+    @apply bg-success text-white hover:bg-success/80;
   }
 }

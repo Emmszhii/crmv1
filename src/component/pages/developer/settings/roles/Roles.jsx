@@ -3,10 +3,10 @@ import Header from "../../../../partials/Header";
 import Navigation from "../../../../partials/Navigation";
 import PlusSvg from "../../../../svg/PlusSvg";
 import Breadcrumbs from "../../../../partials/Breadcrumbs";
-import RolesTable from "./RolesTable";
 import { setIsAdd, setIsSettingsOpen } from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
 import ModalAddRoles from "./ModalAddRoles";
+import RolesTable from "./RolesTable";
 
 const Roles = () => {
   const [itemEdit, setItemEdit] = React.useState();
@@ -30,7 +30,10 @@ const Roles = () => {
             <Breadcrumbs />
           </div>
           <div className="bg-white py-8 mt-2 ">
-            <button className="flex items-center text-sm rounded-md gap-3 py-2 pl-10 pr-12 bg-secondary ml-4 text-white hover:bg-blend-darken">
+            <button
+              className="flex items-center text-sm rounded-md gap-3 py-2 pl-10 pr-12 bg-secondary ml-4 text-white hover:bg-blend-darken"
+              onClick={handleAdd}
+            >
               <PlusSvg /> Add Role
             </button>
           </div>

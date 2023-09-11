@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { StoreContext } from "../../store/StoreContext";
 import { setIsSettingsOpen } from "../../store/StoreAction";
 
-const Navigation = () => {
+const Navigation = ({ menu, submenu = "null" }) => {
   const { store, dispatch } = React.useContext(StoreContext);
 
   const handleCloseSettings = (e) => {
@@ -14,11 +14,11 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="h-[calc(100vh_-_83px)] bg-white">
-        <ul className="pt-8">
+      <div className="h-[calc(100vh_-_83px)] bg-white pt-8 pl-8">
+        <ul>
           <li className={`nav__link ${store.isSettingsOpen && "active"}`}>
             <button
-              className="ml-5 flex items-center gap-3 w-full px-2 py-1"
+              className="flex items-center gap-3 w-full px-2 py-1"
               onClick={handleCloseSettings}
             >
               <div className="flex items-center gap-3 text-[17px]">
@@ -31,7 +31,9 @@ const Navigation = () => {
             <div className="sub__menu">
               <ul>
                 <li className={`sub__link active`}>
-                  <Link to={`settings/roles`} className={``}>Roles</Link>
+                  <Link to={`settings/roles`} className={``}>
+                    Roles
+                  </Link>
                 </li>
                 <li className="sub__link">
                   <Link>System Account</Link>
