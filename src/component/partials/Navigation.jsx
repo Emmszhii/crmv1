@@ -31,7 +31,7 @@ const Navigation = () => {
             <div className="sub__menu">
               <ul>
                 <li className={`sub__link active`}>
-                  <Link>Roles</Link>
+                  <Link to={`settings/roles`} className={``}>Roles</Link>
                 </li>
                 <li className="sub__link">
                   <Link>System Account</Link>

@@ -36,7 +36,7 @@
     @apply bg-primary text-white relative before:content-[''] before:w-5 before:h-full before:bg-primary before:absolute before:right-0 before:z-20 after:content-[''] after:z-10 after:w-0 after:h-0  after:absolute after:-right-[18px] after:-bottom-4 after:border-l-[18px] after:border-r-[18px] after:border-b-[18px] after:border-l-primaryShade after:border-r-transparent after:border-b-transparent;
   }
   .nav__link.active .sub__menu {
-    @apply bg-slate-100 h-auto;
+    @apply bg-slate-100 h-28;
   }
   .sub__menu {
     @apply ml-5 h-0 overflow-hidden transition-all;
@@ -57,6 +57,12 @@
     @apply text-red-800;
   }
   .breadcrumbs {
-    @apply flex gap-2 text-sm;
+    @apply flex gap-5 text-sm;
+  }
+  .breadcrumbs li a {
+    @apply relative before:content-['>'] before:-right-3.5 before:absolute;
+  }
+  .breadcrumbs li:last-child a {
+    @apply before:hidden;
   }
 }
