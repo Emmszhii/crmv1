@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: Poppins, Arial, sans-serif;
+  }
+  table {
+    @apply w-full;
+  }
+  table thead th {
+    @apply text-left text-sm font-black;
+  }
+  table thead th:first-child {
+    @apply w-8;
+  }
+  table thead th:nth-child(2) {
+    @apply w-28;
+  }
+  table thead th:last-child {
+    @apply w-20 text-right;
+  }
+  table tbody tr {
+    @apply border-t-2 border-t-slate-200 last:border-b-2 last:border-b-slate-200 odd:bg-slate-100;
+  }
+  table tbody tr td {
+    @apply py-2 font-thin text-sm;
+  }
+}
+
+@layer components {
+  .nav__link.active button {
+    @apply bg-primary text-white relative before:content-[''] before:w-5 before:h-full before:bg-primary before:absolute before:right-0 before:z-20 after:content-[''] after:z-10 after:w-0 after:h-0  after:absolute after:-right-[18px] after:-bottom-4 after:border-l-[18px] after:border-r-[18px] after:border-b-[18px] after:border-l-primaryShade after:border-r-transparent after:border-b-transparent;
+  }
+  .nav__link.active .sub__menu {
+    @apply bg-slate-100 h-auto;
+  }
+  .sub__menu {
+    @apply ml-5 h-0 overflow-hidden transition-all;
+  }
+  .sub__menu ul {
+    @apply ml-9;
+  }
+  .main__grid {
+    @apply grid grid-cols-[300px_1fr];
+  }
+  .main__grid main {
+    @apply bg-slate-100;
+  }
+  .sub__link {
+    @apply text-sm font-light py-1;
+  }
+  .sub__link.active {
+    @apply text-red-800;
+  }
+  .breadcrumbs {
+    @apply flex gap-2 text-sm;
+  }
+}
