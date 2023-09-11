@@ -4,8 +4,19 @@ import Navigation from "../../../../partials/Navigation";
 import PlusSvg from "../../../../svg/PlusSvg";
 import Breadcrumbs from "../../../../partials/Breadcrumbs";
 import RolesTable from "./RolesTable";
+import { setIsAdd, setIsSettingsOpen } from "../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../store/StoreContext";
+import ModalAddRoles from "./ModalAddRoles";
 
 const Roles = () => {
+  const [itemEdit, setItemEdit] = React.useState();
+  const { store, dispatch } = React.useContext(StoreContext);
+
+  const handleAdd = () => {
+    dispatch(setIsAdd(true));
+    setItemEdit(null);
+  };
+
   return (
     <>
       <Header />
@@ -28,6 +39,7 @@ const Roles = () => {
           </div>
         </main>
       </section>
+      {store.isAdd && <ModalAddRoles itemEdit={itemEdit} />}
     </>
   );
 };
