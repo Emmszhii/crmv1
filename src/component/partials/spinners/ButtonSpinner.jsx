@@ -6,8 +6,8 @@ const ButtonSpinner = ({ color = "stroke-white" }) => {
       <div className="flex justify-center items-center flex-col text-center rounded-full">
         <svg
           className="spinner"
-          width="40"
-          height="40"
+          width="20"
+          height="20"
           viewBox="0 0 50 50"
           role="img"
         >

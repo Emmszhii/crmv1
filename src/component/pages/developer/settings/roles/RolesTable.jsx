@@ -18,6 +18,7 @@ import ModalArchive from "./ModalArchive.jsx";
 import ModalRestore from "./ModalRestore.jsx";
 import Pills from "../../../../partials/Pills.jsx";
 import Toast from "../../../../partials/Toast.jsx";
+import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
 
 const RolesTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -58,8 +59,8 @@ const RolesTable = ({ setItemEdit }) => {
 
   return (
     <>
-      <div className="px-4">
-        {isFetching && !isLoading && <TableSpinner />}
+      <div className="px-4 relative">
+        {isFetching && !isLoading && <FetchingSpinner />}
 
         <table>
           <thead>
