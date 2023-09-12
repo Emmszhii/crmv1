@@ -1,12 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: Poppins, Arial, sans-serif;
+  body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
   }
   table {
     @apply w-full;
@@ -17,15 +18,14 @@
   table thead th:first-child {
     @apply w-8 text-center;
   }
-  table tbody tr td:first-child {
-    @apply text-center;
-  }
+  table tbody tr td:first-child,
   table tbody tr td:last-child {
     @apply text-center;
   }
   table thead th:nth-child(2) {
     @apply w-16;
   }
+
   table thead th:last-child {
     @apply w-16 text-right;
   }
@@ -84,8 +84,9 @@
 
 @layer components {
   .main__grid {
-    @apply grid grid-cols-[280px_1fr];
+    @apply grid grid-cols-[0_1fr] md:grid-cols-[280px_1fr] overflow-hidden;
   }
+
   .main__grid main {
     @apply bg-slate-100;
   }
@@ -149,5 +150,8 @@
   }
   .btn.btn--alert {
     @apply bg-alert text-white hover:bg-alert/80;
+  }
+  .btn.btn--cancel {
+    @apply bg-gray-100 text-black hover:bg-gray-200 text-sm;
   }
 }

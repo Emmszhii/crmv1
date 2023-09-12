@@ -18,6 +18,7 @@ import ModalSuccess from "../../../../partials/Modals/ModalSuccess.jsx";
 const RolesTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [item, setItem] = React.useState(null);
+  let counter = 1;
 
   const {
     isLoading,
@@ -78,9 +79,9 @@ const RolesTable = ({ setItemEdit }) => {
             {roles?.data.map((item, key) => {
               return (
                 <tr key={key}>
-                  <td>{item.roles_aid}</td>
+                  <td>{counter++}</td>
                   <td>{item.roles_name}</td>
-                  <td>{item.roles_description}</td>
+                  <td>{item.roles_description.slice(0, 20)}...</td>
                   <td className="table__action">
                     <button
                       className="tooltip"

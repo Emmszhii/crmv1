@@ -21,11 +21,11 @@ const Roles = () => {
   return (
     <>
       <Header />
-      <section className="main__grid">
+      <section className="main__grid overflow-x-hidden">
         <aside>
           <Navigation menu="settings" submenu="settingsRoles" />
         </aside>
-        <main className="px-10">
+        <main className="px-6 md:px-10">
           <div className="mt-8 flex items-center justify-between">
             <h1 className="text-4xl font-bold">Roles</h1>
             <Breadcrumbs />
@@ -38,7 +38,7 @@ const Roles = () => {
               <PlusSvg /> Add Role
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-4">
+          <div className="bg-white pt-8 pb-6 mt-4 overflow-x-auto">
             <RolesTable setItemEdit={setItemEdit} />
           </div>
         </main>

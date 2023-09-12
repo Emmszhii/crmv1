@@ -64,7 +64,7 @@ const ModalDelete = ({ item, setItem }) => {
             <div className="text-6xl text-warning flex justify-center pb-2">
               <AiFillExclamationCircle />
             </div>
-            <h2 className="text-center font-bold text-warning text-xl">
+            <h2 className="text-center font-bold text-warning text-lg">
               CONFIRM
             </h2>
             <button className="absolute top-4 right-4" onClick={handleClose}>
@@ -75,7 +75,7 @@ const ModalDelete = ({ item, setItem }) => {
             <h3 className="text-sm pb-4">
               Are you sure you want to delete this?
             </h3>
-            <p className="font-bold">"{item.roles_name}"</p>
+            <p className="font-bold text-base">"{item.roles_name}"</p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button
