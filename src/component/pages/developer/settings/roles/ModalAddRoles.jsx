@@ -3,6 +3,7 @@ import React from "react";
 import { FaTimes } from "react-icons/fa";
 import * as Yup from "yup";
 import {
+  setError,
   setIsAdd,
   setMessage,
   setSuccess,
@@ -38,6 +39,7 @@ const ModalAddRoles = ({ itemEdit }) => {
       }
       // show error box
       if (!data.success) {
+        dispatch(setError(true));
         dispatch(setValidate(true));
         dispatch(setMessage(data.error));
       }

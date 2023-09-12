@@ -61,21 +61,23 @@ const ModalDelete = ({ item, setItem }) => {
           className={`absolute mx-1 bg-white border border-gray-200 rounded-md max-w-[420px] w-full shadow-xl`}
         >
           <div className="modal__header relative px-4 pt-8 ">
-            <div className="text-7xl text-warning flex justify-center">
+            <div className="text-6xl text-warning flex justify-center pb-2">
               <AiFillExclamationCircle />
             </div>
-            <h2 className="text-center font-bold text-warning text-2xl">
+            <h2 className="text-center font-bold text-warning text-xl">
               CONFIRM
             </h2>
             <button className="absolute top-4 right-4" onClick={handleClose}>
               <FaTimes className="text-gray-700 text-sm" />
             </button>
           </div>
-          <div className="modal__body px-4 py-8 text-center">
-            <h3 className="text-sm">Are you sure you want to delete this?</h3>
-            <p>{item.roles_name}</p>
+          <div className="px-4 pt-4 pb-2 text-center">
+            <h3 className="text-sm pb-4">
+              Are you sure you want to delete this?
+            </h3>
+            <p className="font-bold">"{item.roles_name}"</p>
           </div>
-          <div className="modal__action flex flex-col gap-2 m-4 text-sm font-thin">
+          <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button
               className="btn btn--outline"
               type="submit"

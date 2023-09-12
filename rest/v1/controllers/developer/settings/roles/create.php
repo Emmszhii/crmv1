@@ -17,7 +17,7 @@ $roles->roles_is_active = 1;
 $roles->roles_created_at = date("Y-m-d H:i:s");
 $roles->roles_updated_at = date("Y-m-d H:i:s");
 // // check name
-// isNameExist($roles, $roles->roles_name);
+isNameExist($roles, $roles->roles_name);
 // create
 $query = checkCreate($roles);
 returnSuccess($roles, "roles", $query);

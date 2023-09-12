@@ -7,6 +7,7 @@ import { setIsAdd, setIsSettingsOpen } from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
 import ModalAddRoles from "./ModalAddRoles";
 import RolesTable from "./RolesTable";
+import ModalError from "../../../../partials/Modals/ModalError";
 
 const Roles = () => {
   const [itemEdit, setItemEdit] = React.useState();
@@ -22,7 +23,7 @@ const Roles = () => {
       <Header />
       <section className="main__grid">
         <aside>
-          <Navigation />
+          <Navigation menu="settings" submenu="settingsRoles" />
         </aside>
         <main className="px-10">
           <div className="mt-8 flex items-center justify-between">
@@ -38,11 +39,12 @@ const Roles = () => {
             </button>
           </div>
           <div className="bg-white pt-8 pb-6 mt-4">
-            <RolesTable />
+            <RolesTable setItemEdit={setItemEdit} />
           </div>
         </main>
       </section>
       {store.isAdd && <ModalAddRoles itemEdit={itemEdit} />}
+      {store.error && <ModalError />}
     </>
   );
 };

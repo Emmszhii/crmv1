@@ -17,6 +17,9 @@ if (array_key_exists("rolesId", $_GET)) {
     $roles->roles_description = checkIndex($data, "roles_description");
     $roles->roles_updated_at = date("Y-m-d H:i:s");
     checkId($roles->roles_aid);
+
+    // check name
+    isNameExist($roles, $roles->roles_name);
     // update
     $query = checkUpdate($roles);
     returnSuccess($roles, "Roles", $query);

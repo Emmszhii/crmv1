@@ -15,7 +15,7 @@ import EditSvg from "../../../../svg/EditSvg.jsx";
 import ModalDelete from "./ModalDelete.jsx";
 import ModalSuccess from "../../../../partials/Modals/ModalSuccess.jsx";
 
-const RolesTable = () => {
+const RolesTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [item, setItem] = React.useState(null);
 
@@ -29,6 +29,11 @@ const RolesTable = () => {
     "get", // method
     "settings-roles" // key
   );
+
+  const handleEdit = (item) => {
+    setItemEdit(item);
+    dispatch(setIsAdd(true));
+  };
 
   const handleDelete = (item) => {
     setItem(item);
@@ -81,7 +86,7 @@ const RolesTable = () => {
                       className="tooltip"
                       data-tooltip="Edit"
                       type="submit"
-                      onClick={() => handleEdit}
+                      onClick={() => handleEdit(item)}
                     >
                       <EditSvg />
                     </button>

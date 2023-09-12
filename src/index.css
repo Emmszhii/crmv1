@@ -20,11 +20,14 @@
   table tbody tr td:first-child {
     @apply text-center;
   }
+  table tbody tr td:last-child {
+    @apply text-center;
+  }
   table thead th:nth-child(2) {
     @apply w-16;
   }
   table thead th:last-child {
-    @apply w-14 text-right;
+    @apply w-16 text-right;
   }
   table tbody tr {
     @apply border-t-2 border-t-slate-200 last:border-b-2 last:border-b-slate-200 odd:bg-slate-100 hover:bg-gray-100;
@@ -114,7 +117,7 @@
     @apply flex flex-col;
   }
   .table__action {
-    @apply flex items-center justify-center gap-2 text-base;
+    @apply flex items-center justify-center gap-3 text-base;
   }
   .tooltip {
     @apply flex justify-center items-center cursor-pointer relative whitespace-nowrap;
@@ -143,5 +146,8 @@
   }
   .btn.btn--success {
     @apply bg-success text-white hover:bg-success/80;
+  }
+  .btn.btn--alert {
+    @apply bg-alert text-white hover:bg-alert/80;
   }
 }

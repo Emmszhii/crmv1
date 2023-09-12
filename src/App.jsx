@@ -13,6 +13,7 @@ function App() {
           <Router>
             <Routes>
               <Route path={"*"} element={<Roles />} />
+              <Route path={"/settings/roles"} element={<Roles />} />
             </Routes>
           </Router>
         </StoreProvider>
