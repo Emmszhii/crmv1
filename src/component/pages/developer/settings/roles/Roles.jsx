@@ -29,6 +29,7 @@ const Roles = () => {
           <Navigation menu="settings" submenu="settingsRoles" />
         </aside>
         <main className="px-6 md:px-10">
+          {store.isMenuOpen ? <div className="overlay"></div> : ""}
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
             <h1 className="text-4xl font-bold">Roles</h1>
             <Breadcrumbs />
@@ -41,7 +42,7 @@ const Roles = () => {
               <PlusSvg /> Add Role
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-4 overflow-x-auto">
+          <div className="bg-white pt-8 pb-6 mt-8 lg:mt-4 overflow-x-auto">
             <RolesTable setItemEdit={setItemEdit} />
           </div>
         </main>

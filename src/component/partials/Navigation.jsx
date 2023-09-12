@@ -10,7 +10,7 @@ const Navigation = ({ menu, submenu = "null" }) => {
 
   return (
     <>
-      <div className="h-[calc(100vh_-_83px)] bg-white pt-8 pl-4 lg:pl-8 w-60 lg:w-auto">
+      <div className="h-[calc(100vh_-_83px)] bg-white pt-8 pl-4 lg:pl-8 w-60 md:w-80 lg:w-auto">
         <ul>
           <li className={`nav__link ${menu === "settings" ? "active" : ""}`}>
             <button className="flex items-center gap-3 w-full px-2 py-1">
