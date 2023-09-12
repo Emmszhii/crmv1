@@ -187,3 +187,16 @@ export const setIsSettingsOpen = (val) => {
     payload: val,
   };
 };
+
+export const setIsBurgerButton = (val) => {
+  return {
+    type: "IS_BURGER_BUTTON",
+    payload: val,
+  };
+};
+export const setIsArchive = (val) => {
+  return {
+    type: "IS_ARCHIVE",
+    payload: val,
+  };
+};

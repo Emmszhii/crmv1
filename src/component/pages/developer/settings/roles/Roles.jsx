@@ -1,13 +1,16 @@
 import React from "react";
+import { setIsAdd } from "../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../store/StoreContext";
+import Breadcrumbs from "../../../../partials/Breadcrumbs";
 import Header from "../../../../partials/Header";
+import ModalError from "../../../../partials/Modals/ModalError";
 import Navigation from "../../../../partials/Navigation";
 import PlusSvg from "../../../../svg/PlusSvg";
-import Breadcrumbs from "../../../../partials/Breadcrumbs";
-import { setIsAdd, setIsSettingsOpen } from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
 import ModalAddRoles from "./ModalAddRoles";
 import RolesTable from "./RolesTable";
-import ModalError from "../../../../partials/Modals/ModalError";
+import ModalArchive from "./ModalArchive";
+import ModalRestore from "./ModalRestore";
+import Toast from "../../../../partials/Toast";
 
 const Roles = () => {
   const [itemEdit, setItemEdit] = React.useState();
@@ -21,8 +24,8 @@ const Roles = () => {
   return (
     <>
       <Header />
-      <section className="main__grid overflow-x-hidden">
-        <aside>
+      <section className="main__grid">
+        <aside className={`${store.isBurgerButton ? "active" : ""}`}>
           <Navigation menu="settings" submenu="settingsRoles" />
         </aside>
         <main className="px-6 md:px-10">
@@ -44,6 +47,7 @@ const Roles = () => {
         </main>
       </section>
       {store.isAdd && <ModalAddRoles itemEdit={itemEdit} />}
+      {store.isSuccess && <Toast />}
       {store.error && <ModalError />}
     </>
   );

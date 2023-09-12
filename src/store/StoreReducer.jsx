@@ -156,6 +156,17 @@ export const StoreReducer = (state, action) => {
         isSettingsOpen: action.payload,
       };
 
+    case "IS_BURGER_BUTTON":
+      return {
+        ...state,
+        isBurgerButton: action.payload,
+      };
+    case "IS_ARCHIVE":
+      return {
+        ...state,
+        isArchive: action.payload,
+      };
+
     default:
       return state;
   }

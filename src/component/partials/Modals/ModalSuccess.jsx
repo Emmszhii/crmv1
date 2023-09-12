@@ -19,7 +19,7 @@ const ModalSuccess = () => {
             <div className="text-7xl text-success flex justify-center">
               <AiFillExclamationCircle />
             </div>
-            <h2 className="text-center font-bold text-success text-2xl">
+            <h2 className="text-center font-bold text-success text-xl">
               Success
             </h2>
             <button className="absolute top-4 right-4" onClick={handleClose}>

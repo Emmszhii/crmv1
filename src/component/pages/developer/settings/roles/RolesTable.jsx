@@ -1,19 +1,23 @@
 import React from "react";
-import { FiArchive, FiEdit3 } from "react-icons/fi";
-import { MdDelete, MdRestore } from "react-icons/md";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { MdDelete, MdRestorePage } from "react-icons/md";
+import { BiSolidArchiveOut } from "react-icons/bi";
 import {
   setIsAdd,
+  setIsArchive,
   setIsConfirm,
   setIsRestore,
 } from "../../../../../store/StoreAction.jsx";
 import { StoreContext } from "../../../../../store/StoreContext.jsx";
 import useQueryData from "../../../../custom-hooks/useQueryData.jsx";
-import TableSpinner from "../../../../partials/spinners/TableSpinner.jsx";
+import ModalSuccess from "../../../../partials/Modals/ModalSuccess.jsx";
 import TableLoading from "../../../../partials/TableLoading.jsx";
+import TableSpinner from "../../../../partials/spinners/TableSpinner.jsx";
 import EditSvg from "../../../../svg/EditSvg.jsx";
 import ModalDelete from "./ModalDelete.jsx";
-import ModalSuccess from "../../../../partials/Modals/ModalSuccess.jsx";
+import ModalArchive from "./ModalArchive.jsx";
+import ModalRestore from "./ModalRestore.jsx";
+import Pills from "../../../../partials/Pills.jsx";
+import Toast from "../../../../partials/Toast.jsx";
 
 const RolesTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -41,6 +45,17 @@ const RolesTable = ({ setItemEdit }) => {
     dispatch(setIsConfirm(true));
   };
 
+  const handleRestore = (item) => {
+    setItem(item);
+    dispatch(setIsRestore(true));
+  };
+
+  const handleArchive = (item) => {
+    dispatch(setIsArchive(!store.isArchive));
+    setItem(item);
+    console.log(store.isArhive);
+  };
+
   return (
     <>
       <div className="px-4">
@@ -50,6 +65,7 @@ const RolesTable = ({ setItemEdit }) => {
           <thead>
             <tr>
               <th>#</th>
+              <th>Status</th>
               <th>Name</th>
               <th>Description</th>
               <th>Action</th>
@@ -80,24 +96,58 @@ const RolesTable = ({ setItemEdit }) => {
               return (
                 <tr key={key}>
                   <td>{counter++}</td>
+                  <td>
+                    {item.roles_is_active === 1 ? (
+                      <>
+                        <Pills label="Active" bgc="bg-green-600" />
+                      </>
+                    ) : (
+                      <>
+                        <Pills label="Inactive" bgc="bg-gray-300" />
+                      </>
+                    )}
+                  </td>
                   <td>{item.roles_name}</td>
-                  <td>{item.roles_description.slice(0, 20)}...</td>
+                  <td>
+                    {item.roles_description.slice(0, 20)}{" "}
+                    {item.roles_description.length > 20 && "..."}
+                  </td>
                   <td className="table__action">
-                    <button
-                      className="tooltip"
-                      data-tooltip="Edit"
-                      type="submit"
-                      onClick={() => handleEdit(item)}
-                    >
-                      <EditSvg />
-                    </button>
-                    <button
-                      className="tooltip"
-                      data-tooltip="Delete"
-                      onClick={() => handleDelete(item)}
-                    >
-                      <MdDelete />
-                    </button>
+                    {item.roles_is_active === 1 ? (
+                      <>
+                        <button
+                          className="tooltip"
+                          data-tooltip="Edit"
+                          onClick={() => handleEdit(item)}
+                        >
+                          <EditSvg />
+                        </button>
+                        <button
+                          className="tooltip"
+                          data-tooltip="Archive"
+                          onClick={() => handleArchive(item)}
+                        >
+                          <BiSolidArchiveOut />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="tooltip"
+                          data-tooltip="Restore"
+                          onClick={() => handleRestore(item)}
+                        >
+                          <MdRestorePage />
+                        </button>
+                        <button
+                          className="tooltip"
+                          data-tooltip="Delete"
+                          onClick={() => handleDelete(item)}
+                        >
+                          <MdDelete />
+                        </button>
+                      </>
+                    )}
                   </td>
                 </tr>
               );
@@ -107,7 +157,9 @@ const RolesTable = ({ setItemEdit }) => {
       </div>
 
       {store.isConfirm && <ModalDelete item={item} setItem={setItem} />}
-      {store.success && <ModalSuccess />}
+      {store.isArchive && <ModalArchive item={item} setItem={setItem} />}
+      {store.isRestore && <ModalRestore item={item} setItem={setItem} />}
+      {store.success && <Toast />}
     </>
   );
 };

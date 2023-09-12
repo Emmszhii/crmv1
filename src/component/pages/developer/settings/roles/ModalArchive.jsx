@@ -3,23 +3,24 @@ import React from "react";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
 import {
+  setIsArchive,
   setIsConfirm,
   setMessage,
   setSuccess,
-  setValidate
+  setValidate,
 } from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
 import { queryData } from "../../../../helpers/queryData";
 
-const ModalDelete = ({ item, setItem }) => {
+const ModalArchive = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/controllers/developer/settings/roles/roles.php?rolesId=${item.roles_aid}`,
-        "delete",
+        `/v1/controllers/developer/settings/roles/active.php?rolesId=${item.roles_aid}`,
+        "put",
         values
       ),
     onSuccess: (data) => {
@@ -28,9 +29,9 @@ const ModalDelete = ({ item, setItem }) => {
       //   dispatch(setIsRestore(false));
 
       if (data.success) {
-        dispatch(setIsConfirm(false));
+        dispatch(setIsArchive(false));
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Deleted succesfully.`));
+        dispatch(setMessage(`Archive succesfully.`));
       }
       if (!data.success) {
         dispatch(setValidate(true));
@@ -42,13 +43,12 @@ const ModalDelete = ({ item, setItem }) => {
   const handleYes = async () => {
     // // mutate data
     mutation.mutate({
-      isActive: 1,
-      item: item,
+      isActive: 0,
     });
   };
 
   const handleClose = () => {
-    dispatch(setIsConfirm(!store.isConfirm));
+    dispatch(setIsArchive(!store.isArchive));
     setItem(null);
   };
 
@@ -71,7 +71,7 @@ const ModalDelete = ({ item, setItem }) => {
           </div>
           <div className="px-4 pt-4 pb-2 text-center">
             <h3 className="text-sm pb-4">
-              Are you sure you want to delete this?
+              Are you sure you want to archive this?
             </h3>
             <p className="font-bold text-base">"{item.roles_name}"</p>
           </div>
@@ -93,4 +93,4 @@ const ModalDelete = ({ item, setItem }) => {
   );
 };
 
-export default ModalDelete;
+export default ModalArchive;
