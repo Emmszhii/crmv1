@@ -25,7 +25,7 @@ const Roles = () => {
     <>
       <Header />
       <section className="main__grid">
-        <aside className={`${store.isBurgerButton ? "active" : ""}`}>
+        <aside className={`${store.isMenuOpen ? "active" : ""}`}>
           <Navigation menu="settings" submenu="settingsRoles" />
         </aside>
         <main className="px-6 md:px-10">

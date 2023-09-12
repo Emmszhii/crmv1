@@ -28,7 +28,7 @@ const initVal = {
   isRefresh: false,
   isToolsOpen: false,
   isSettingsOpen: false,
-  isBurgerButton: false,
+  isMenuOpen: false,
 };
 
 const StoreContext = React.createContext();

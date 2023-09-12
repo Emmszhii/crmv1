@@ -109,7 +109,7 @@ const RolesTable = ({ setItemEdit }) => {
                   </td>
                   <td>{item.roles_name}</td>
                   <td>
-                    {item.roles_description.slice(0, 20)}{" "}
+                    {item.roles_description.slice(0, 20)}
                     {item.roles_description.length > 20 && "..."}
                   </td>
                   <td className="table__action">

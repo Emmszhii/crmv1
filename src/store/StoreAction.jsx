@@ -188,9 +188,9 @@ export const setIsSettingsOpen = (val) => {
   };
 };
 
-export const setIsBurgerButton = (val) => {
+export const setIsMenuOpen = (val) => {
   return {
-    type: "IS_BURGER_BUTTON",
+    type: "IS_MENU_OPEN",
     payload: val,
   };
 };

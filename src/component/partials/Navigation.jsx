@@ -3,15 +3,14 @@ import { BsFillGearFill } from "react-icons/bs";
 import { PiCaretRight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../store/StoreContext";
-import { setIsBurgerButton, setIsSettingsOpen } from "../../store/StoreAction";
 import { devNavUrl } from "../helpers/functions-general";
 
 const Navigation = ({ menu, submenu = "null" }) => {
-  const { store, dispatch } = React.useContext(StoreContext);
+  const { store } = React.useContext(StoreContext);
 
   return (
     <>
-      <div className="h-[calc(100vh_-_83px)] bg-white pt-8 pl-8 ">
+      <div className="h-[calc(100vh_-_83px)] bg-white pt-8 pl-4 lg:pl-8 w-60 lg:w-auto">
         <ul>
           <li className={`nav__link ${menu === "settings" ? "active" : ""}`}>
             <button className="flex items-center gap-3 w-full px-2 py-1">

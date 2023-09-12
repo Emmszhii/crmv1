@@ -1,16 +1,20 @@
 import React from "react";
 import LogoutLogo from "../svg/LogoutLogo";
 import { StoreContext } from "../../store/StoreContext";
-import { setIsBurgerButton } from "../../store/StoreAction";
+import { setIsMenuOpen } from "../../store/StoreAction";
 
 const Header = () => {
   const { store, dispatch } = React.useContext(StoreContext);
-  
+  const handleToggleMenu = () => dispatch(setIsMenuOpen(!store.isMenuOpen));
+
   return (
     <>
       <header className="bg-primary py-5 md:py-3 px-4 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="toggle__btn">
+          <div
+            className={`toggle__btn ${store.isMenuOpen ? "active" : ""}`}
+            onClick={handleToggleMenu}
+          >
             <span></span>
             <span></span>
             <span></span>

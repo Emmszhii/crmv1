@@ -84,7 +84,7 @@
 
 @layer components {
   .toggle__btn {
-    @apply p-2 cursor-pointer md:hidden;
+    @apply p-2 cursor-pointer lg:hidden;
   }
   .toggle__btn span {
     @apply block w-7 h-1 bg-white m-1 rounded-md transition-all;
@@ -99,10 +99,10 @@
     @apply -rotate-45 -translate-y-2;
   }
   .main__grid {
-    @apply grid grid-cols-[1fr] md:grid-cols-[280px_1fr] overflow-hidden relative h-[calc(100vh_-_84px)];
+    @apply grid grid-cols-[1fr] lg:grid-cols-[280px_1fr] overflow-hidden relative h-[calc(100vh_-_84px)];
   }
   .main__grid aside {
-    @apply absolute md:static -left-full transition-all;
+    @apply absolute lg:static -left-full transition-all;
   }
   .main__grid aside.active {
     @apply left-0;
