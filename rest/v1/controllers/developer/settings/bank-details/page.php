@@ -14,7 +14,7 @@ $bankDetails = new BankDetails($conn);
 // validate api key 
 if (array_key_exists("start", $_GET)) {
     $bankDetails->bank_details_start = $_GET['start'];
-    $bankDetails->bank_details_total = 4;
+    $bankDetails->bank_details_total = 3;
 
     // check to see if tas id in query string is not empty and is number, if not return json
     checkLimitId($bankDetails->bank_details_start, $bankDetails->bank_details_total);
@@ -24,7 +24,7 @@ if (array_key_exists("start", $_GET)) {
     checkReadQuery(
         $query,
         $total_result,
-        $bankDetails->bank_details_start,
+        $bankDetails->bank_details_total,
         $bankDetails->bank_details_start
     );
 }

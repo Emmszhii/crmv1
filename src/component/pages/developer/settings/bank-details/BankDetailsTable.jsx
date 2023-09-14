@@ -99,143 +99,144 @@ const BankDetailsTable = ({ setItemEdit }) => {
     setItem(item);
     console.log(store.isArhive);
   };
+  console.log(isFetchingNextPage);
+  console.log(hasNextPage);
 
+  console.log(result);
   return (
     <>
-      <div className="px-4 relative ">
-        <Searchbar
-          search={search}
-          dispatch={dispatch}
-          store={store}
-          result={result?.pages}
-          isFetching={isFetching}
-          setOnSearch={setOnSearch}
-          onSearch={onSearch}
-        />
-        <div className="bank__details__wrapper">
-          <ul className="bank__details__cards">
-            {isFetching && status !== "loading" && <FetchingSpinner />}
+      <Searchbar
+        search={search}
+        dispatch={dispatch}
+        store={store}
+        result={result?.pages}
+        isFetching={isFetching}
+        setOnSearch={setOnSearch}
+        onSearch={onSearch}
+      />
 
-            {(status == "loading" || result?.pages[0].data.length === 0) &&
-              (status == "loading" ? (
-                <FetchingSpinner />
-              ) : (
-                <div className="flex py-8 flex-col gap-1 items-center">
-                  <IconNoData />
-                  <h2>No Data</h2>
-                </div>
-              ))}
+      <div className="bank__details__wrapper relative">
+        <ul className="bank__details__cards">
+          {isFetching && status !== "loading" && <FetchingSpinner />}
 
-            {error && (
-              <div className="text-center p-10">
-                <IconServerError />
-                <h2 className="pt-2">Server Error</h2>
+          {(status == "loading" || result?.pages[0].data.length === 0) &&
+            (status == "loading" ? (
+              <FetchingSpinner />
+            ) : (
+              <div className="flex py-8 flex-col gap-1 items-center">
+                <IconNoData />
+                <h2>No Data</h2>
               </div>
-            )}
+            ))}
 
-            {result?.pages.map((page, key) => {
-              return (
-                <React.Fragment key={key}>
-                  {page.data.map((item, key) => {
-                    counter += item;
-                    active += item.bank_details_is_active;
-                    inactive += !item.bank_details_is_active;
-                    return (
-                      <React.Fragment key={key}>
-                        <li className="bank__details__item">
-                          <div className="bank__details__actions">
-                            <ul>
-                              {item.bank_details_is_active === 1 ? (
-                                <>
-                                  <li>
-                                    <button
-                                      className="tooltip"
-                                      data-tooltip="Edit"
-                                      onClick={() => handleEdit(item)}
-                                    >
-                                      <FiEdit3 />
-                                    </button>
-                                  </li>
-                                  <li>
-                                    <button
-                                      className="tooltip"
-                                      data-tooltip="Archive"
-                                      onClick={() => handleArchive(item)}
-                                    >
-                                      <FiArchive />
-                                    </button>
-                                  </li>
-                                </>
+          {error && (
+            <div className="text-center p-10">
+              <IconServerError />
+              <h2 className="pt-2">Server Error</h2>
+            </div>
+          )}
+
+          {result?.pages.map((page, key) => {
+            return (
+              <React.Fragment key={key}>
+                {page.data.map((item, key) => {
+                  counter += item;
+                  active += item.bank_details_is_active;
+                  inactive += !item.bank_details_is_active;
+                  return (
+                    <React.Fragment key={key}>
+                      <li className="bank__details__item">
+                        <div className="bank__details__actions">
+                          <ul>
+                            <li>
+                              {item.bank_details_is_active ? (
+                                <Pills label="Active" bgc="bg-green-600" />
                               ) : (
-                                <>
-                                  <li>
-                                    <button
-                                      className="tooltip"
-                                      data-tooltip="Delete"
-                                      onClick={() => handleDelete(item)}
-                                    >
-                                      <RiDeleteBinLine />
-                                    </button>
-                                  </li>
-                                  <li>
-                                    <button
-                                      className="tooltip"
-                                      data-tooltip="Restore"
-                                      onClick={() => handleRestore(item)}
-                                    >
-                                      <MdRestore />
-                                    </button>
-                                  </li>
-                                </>
+                                <Pills label="Inactive" bgc="bg-gray-200" />
                               )}
-                            </ul>
-                          </div>
-                          <p className="py-2 text-center">
-                            {item.bank_details_is_active ? (
-                              <Pills label="Active" bgc="bg-green-600" />
+                            </li>
+                            {item.bank_details_is_active === 1 ? (
+                              <>
+                                <li>
+                                  <button
+                                    className="tooltip"
+                                    data-tooltip="Edit"
+                                    onClick={() => handleEdit(item)}
+                                  >
+                                    <FiEdit3 />
+                                  </button>
+                                  <button
+                                    className="tooltip"
+                                    data-tooltip="Archive"
+                                    onClick={() => handleArchive(item)}
+                                  >
+                                    <FiArchive />
+                                  </button>
+                                </li>
+                              </>
                             ) : (
-                              <Pills label="Inactive" bgc="bg-gray-200" />
+                              <>
+                                <li>
+                                  <button
+                                    className="tooltip"
+                                    data-tooltip="Delete"
+                                    onClick={() => handleDelete(item)}
+                                  >
+                                    <RiDeleteBinLine />
+                                  </button>
+
+                                  <button
+                                    className="tooltip"
+                                    data-tooltip="Restore"
+                                    onClick={() => handleRestore(item)}
+                                  >
+                                    <MdRestore />
+                                  </button>
+                                </li>
+                              </>
                             )}
-                          </p>
-                          <ul className="bank__details__data">
-                            <li>
-                              <h2>Bank Name: </h2>
-                              <span>{item.bank_details_bank_name}</span>
-                            </li>
-                            <li>
-                              <h3>Account Name: </h3>
-                              <span>{item.bank_details_bank_name}</span>
-                            </li>
-                            <li>
-                              <h4>Account Number: </h4>
-                              <span>{item.bank_details_bank_name}</span>
-                            </li>
-                            <li>
-                              <h5>Location: </h5>
-                              <span>{item.bank_details_bank_name}</span>
-                            </li>
                           </ul>
-                        </li>
-                      </React.Fragment>
-                    );
-                  })}
-                </React.Fragment>
-              );
-            })}
-          </ul>
-          <div className="text-center">
-            <Loadmore
-              fetchNextPage={fetchNextPage}
-              isFetchingNextPage={isFetchingNextPage}
-              hasNextPage={hasNextPage}
-              result={result?.pages[0]}
-              setPage={setPage}
-              page={page}
-              refView={ref}
-            />
-          </div>
+                        </div>
+
+                        <ul className="bank__details__data">
+                          <li>
+                            <h2>Bank Name: </h2>
+                            <span>{item.bank_details_bank_name}</span>
+                          </li>
+                          <li>
+                            <h3>Account Name: </h3>
+                            <span>{item.bank_details_account_name}</span>
+                          </li>
+                          <li>
+                            <h4>Account Number: </h4>
+                            <span>{item.bank_details_account_number}</span>
+                          </li>
+                          <li>
+                            <h5>Location: </h5>
+                            <span>{item.bank_details_location}</span>
+                          </li>
+                        </ul>
+                      </li>
+                    </React.Fragment>
+                  );
+                })}
+              </React.Fragment>
+            );
+          })}
+        </ul>
+        <div className="text-center">
+          <Loadmore
+            fetchNextPage={fetchNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+            hasNextPage={hasNextPage}
+            result={result?.pages[0]}
+            setPage={setPage}
+            page={page}
+            refView={ref}
+          />
         </div>
       </div>
+
       {store.isConfirm && <ModalDelete item={item} setItem={setItem} />}
       {store.isArchive && <ModalArchive item={item} setItem={setItem} />}
       {store.isRestore && <ModalRestore item={item} setItem={setItem} />}

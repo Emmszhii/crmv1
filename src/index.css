@@ -158,16 +158,19 @@
   }
 
   .bank__details__wrapper ul.bank__details__cards {
-    @apply grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 justify-center py-8;
+    @apply grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3 gap-5 justify-center py-8;
   }
   .bank__details__wrapper .bank__details__actions ul {
-    @apply flex justify-end gap-4;
+    @apply flex justify-between items-center gap-4 py-2 pb-4;
+  }
+  .bank__details__wrapper .bank__details__actions ul li {
+    @apply flex gap-4;
   }
   .bank__details__item {
     @apply min-h-[200px] min-w-[400px] lg:min-h-[200px] lg:min-w-[300px] border-2 items-center justify-center rounded-md shadow-sm p-4;
   }
   .bank__details__wrapper ul.bank__details__data li {
-    @apply grid grid-cols-2 gap-6;
+    @apply grid grid-cols-2 gap-8 text-sm;
   }
 
   .btn {

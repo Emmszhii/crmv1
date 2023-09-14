@@ -10,6 +10,7 @@ const Loadmore = ({
   page,
   refView,
 }) => {
+  console.log("page", page === result?.total_pages, page, result?.total_pages);
   if (page === result?.total_pages) {
     return (
       <>
@@ -22,7 +23,7 @@ const Loadmore = ({
             )}
           </button>
         ) : (
-          <div className="loadmore mt-8 mb-0 p-1.5 text-center">
+          <div className="text-black mt-8 mb-0 p-1.5 text-center">
             End of list.
           </div>
         )}
