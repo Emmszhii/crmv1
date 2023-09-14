@@ -73,7 +73,9 @@ const ModalArchive = ({ item, setItem }) => {
             <h3 className="text-sm pb-4">
               Are you sure you want to archive this?
             </h3>
-            <p className="font-bold text-base">"{item.roles_name}"</p>
+            <p className="font-bold text-base">
+              "{item.bank_details_bank_name}"
+            </p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button
