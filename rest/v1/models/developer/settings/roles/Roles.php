@@ -1,13 +1,18 @@
 <?php
 class Roles
 {
+    // For data
     public $roles_aid;
     public $roles_name;
     public $roles_description;
     public $roles_is_active;
     public $roles_created_at;
     public $roles_updated_at;
-
+    // For Search and Loadmore
+    public $roles_start;
+    public $roles_total;
+    public $roles_search;
+    // For table
     public $connection;
     public $lastInsertedId;
     public $tblRoles;
@@ -64,7 +69,49 @@ class Roles
         }
         return $query;
     }
-
+    // search 
+    public function search()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from {$this->tblRoles} ";
+            $sql .= "where ( roles_name like :roles_name_search ";
+            $sql .= "or roles_description like :roles_description_search ) ";
+            $sql .= "order by roles_is_active desc, ";
+            $sql .= "roles_name asc ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "roles_name_search" => "%{$this->roles_search}%",
+                "roles_description_search" => "%{$this->roles_search}%",
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+    // for Load more
+    public function readLimit()
+    {
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from ";
+            $sql .= " {$this->tblRoles} ";
+            $sql .= "order by roles_is_active desc, ";
+            $sql .= "roles_name asc ";
+            $sql .= "limit :start, ";
+            $sql .= ":total ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "start" => $this->roles_start - 1,
+                "total" => $this->roles_total,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
 
     // read by id
     public function readById()

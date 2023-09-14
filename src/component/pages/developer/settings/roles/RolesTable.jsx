@@ -61,7 +61,6 @@ const RolesTable = ({ setItemEdit }) => {
     <>
       <div className="px-4 relative">
         {isFetching && !isLoading && <FetchingSpinner />}
-
         <table>
           <thead>
             <tr>

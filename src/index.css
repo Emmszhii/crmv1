@@ -108,7 +108,7 @@
     @apply left-0;
   }
   .overlay {
-    @apply absolute top-0 left-0 right-0 bottom-0 bg-black/50 z-30;
+    @apply absolute lg:static top-0 left-0 right-0 bottom-0 bg-black/50 z-30;
   }
 
   .main__grid main {
@@ -155,6 +155,19 @@
 
   .tooltip::after {
     @apply content-[attr(data-tooltip)] absolute -top-[20px] text-[10px]  left-1/2  -translate-x-1/2  bg-black  bg-opacity-70 py-[4px] px-1.5 text-white  rounded-md opacity-0 leading-none;
+  }
+
+  .bank__details__wrapper ul.bank__details__cards {
+    @apply grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 justify-center py-8;
+  }
+  .bank__details__wrapper .bank__details__actions ul {
+    @apply flex justify-end gap-4;
+  }
+  .bank__details__item {
+    @apply min-h-[200px] min-w-[400px] lg:min-h-[200px] lg:min-w-[300px] border-2 items-center justify-center rounded-md shadow-sm p-4;
+  }
+  .bank__details__wrapper ul.bank__details__data li {
+    @apply grid grid-cols-2 gap-6;
   }
 
   .btn {

@@ -37,7 +37,7 @@ const Navigation = ({ menu, submenu = "null" }) => {
                   </Link>
                 </li>
                 <li className="sub__link">
-                  <Link to={`${devNavUrl}/settings/bank-detail`}>
+                  <Link to={`${devNavUrl}/settings/bank-details`}>
                     Bank Detail
                   </Link>
                 </li>
