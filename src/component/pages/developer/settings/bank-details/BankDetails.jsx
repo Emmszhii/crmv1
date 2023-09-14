@@ -40,7 +40,7 @@ const BankDetails = () => {
               <PlusSvg /> Add Bank Details
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-8 lg:mt-4 px-4 overflow-x-auto relative">
+          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 overflow-x-auto relative">
             <BankDetailsTable setItemEdit={setItemEdit} />
           </div>
         </main>
