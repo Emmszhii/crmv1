@@ -1,8 +1,13 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Form, Formik } from "formik";
 import React from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { StoreContext } from "../../../../../store/StoreContext";
+import { queryData } from "../../../../helpers/queryData";
+import { Form, Formik } from "formik";
 import { FaTimes } from "react-icons/fa";
 import * as Yup from "yup";
+import { InputText, InputTextArea } from "../../../../helpers/FormInputs";
+import { handleEscape } from "../../../../helpers/functions-general";
+import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
 import {
   setError,
   setIsAdd,
@@ -10,13 +15,8 @@ import {
   setSuccess,
   setValidate,
 } from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { InputText, InputTextArea } from "../../../../helpers/FormInputs";
-import { handleEscape } from "../../../../helpers/functions-general";
-import { queryData } from "../../../../helpers/queryData";
-import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
 
-const ModalAddRoles = ({ itemEdit }) => {
+const ModalAddSystemAccount = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
@@ -24,14 +24,14 @@ const ModalAddRoles = ({ itemEdit }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/v1/controllers/developer/settings/roles/roles.php?rolesId=${itemEdit.roles_aid}` //update
-          : "/v1/controllers/developer/settings/roles/roles.php", //add
+          ? `/v1/controllers/developer/settings/system-account/system-account.php?systemAccountId=${itemEdit.system_account_aid}` //update
+          : "/v1/controllers/developer/settings/system-account/system-account.php", //add
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["settings-roles"] });
+      queryClient.invalidateQueries({ queryKey: ["settings-system-account"] });
       if (data.success) {
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
@@ -47,15 +47,17 @@ const ModalAddRoles = ({ itemEdit }) => {
   });
 
   const initVal = {
-    roles_name: itemEdit ? itemEdit.roles_name : "",
-    roles_description: itemEdit ? itemEdit.roles_description : "",
+    system_account_name: itemEdit ? itemEdit.system_account_name : "",
+    system_account_email: itemEdit ? itemEdit.system_account_email : "",
+    system_account_role: itemEdit ? itemEdit.system_account_role : "",
 
-    roles_name_old: itemEdit ? itemEdit.roles_name : "",
+    system_account_name_old: itemEdit ? itemEdit.system_account_name : "",
   };
 
   const yupSchema = Yup.object({
-    roles_name: Yup.string().required("Required"),
-    roles_description: Yup.string().required("Required"),
+    system_account_name: Yup.string().required("Required"),
+    system_account_email: Yup.string().required("Required"),
+    system_account_role: Yup.string().required("Required"),
   });
 
   const handleClose = () => {
@@ -71,7 +73,10 @@ const ModalAddRoles = ({ itemEdit }) => {
           className={`absolute mx-1 bg-white border border-gray-200 rounded-md max-w-[420px] w-full shadow-xl`}
         >
           <div className="modal__header relative p-4">
-            <h3 className="font-bold"> {itemEdit ? "Update" : "Add"} Role </h3>
+            <h3 className="font-bold">
+              {" "}
+              {itemEdit ? "Update" : "Add"} System Account{" "}
+            </h3>
             <button className="absolute top-4 right-4" onClick={handleClose}>
               <FaTimes className="text-gray-700 text-sm" />
             </button>
@@ -92,17 +97,25 @@ const ModalAddRoles = ({ itemEdit }) => {
                     <div className="modal__body p-4">
                       <div className="form__wrap">
                         <InputText
-                          label="Role"
+                          label="Name"
                           type="text"
-                          name="roles_name"
+                          name="system_account_name"
                           disabled={mutation.isLoading}
                         />
                       </div>
                       <div className="form__wrap">
-                        <InputTextArea
-                          label="Description"
+                        <InputText
+                          label="Email"
                           type="text"
-                          name="roles_description"
+                          name="system_account_email"
+                          disabled={mutation.isLoading}
+                        />
+                      </div>
+                      <div className="form__wrap">
+                        <InputText
+                          label="Role"
+                          type="text"
+                          name="system_account_role"
                           disabled={mutation.isLoading}
                         />
                       </div>
@@ -141,4 +154,4 @@ const ModalAddRoles = ({ itemEdit }) => {
   );
 };
 
-export default ModalAddRoles;
+export default ModalAddSystemAccount;

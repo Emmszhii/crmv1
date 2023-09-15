@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { StoreProvider } from "./store/StoreContext";
 import Roles from "./component/pages/developer/settings/roles/Roles";
 import BankDetails from "./component/pages/developer/settings/bank-details/BankDetails";
+import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
 
 function App() {
   // Create a client
@@ -18,6 +19,10 @@ function App() {
               <Route
                 path={"/settings/bank-details"}
                 element={<BankDetails />}
+              />
+              <Route
+                path={"/settings/system-account"}
+                element={<SystemAccount />}
               />
             </Routes>
           </Router>

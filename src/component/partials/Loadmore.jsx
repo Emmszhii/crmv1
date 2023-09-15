@@ -10,7 +10,6 @@ const Loadmore = ({
   page,
   refView,
 }) => {
-  console.log("page", page === result?.total_pages, page, result?.total_pages);
   if (page === result?.total_pages) {
     return (
       <>

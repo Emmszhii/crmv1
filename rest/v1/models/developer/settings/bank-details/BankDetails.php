@@ -88,8 +88,7 @@ class BankDetails
         try {
             $sql = "select ";
             $sql .= "* ";
-            $sql .= "from ";
-            $sql .= " {$this->tblBankDetails} ";
+            $sql .= "from {$this->tblBankDetails} ";
             $sql .= "order by bank_details_is_active desc, ";
             $sql .= "bank_details_bank_name asc ";
             $sql .= "limit :start, ";
@@ -111,8 +110,7 @@ class BankDetails
         try {
             $sql = "select ";
             $sql .= "* ";
-            $sql .= "from ";
-            $sql .= " {$this->tblBankDetails} ";
+            $sql .= "from {$this->tblBankDetails} ";
             $sql .= "order by bank_details_is_active desc, ";
             $sql .= "bank_details_bank_name asc ";
             $query = $this->connection->query($sql);

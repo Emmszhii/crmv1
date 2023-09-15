@@ -7,11 +7,10 @@ import ModalError from "../../../../partials/Modals/ModalError";
 import Navigation from "../../../../partials/Navigation";
 import Toast from "../../../../partials/Toast";
 import PlusSvg from "../../../../svg/PlusSvg";
-import BankDetailsTable from "./BankDetailsTable";
-import ModalAddBankDetails from "./ModalAddBankDetails";
-import BankDetailsCard from "./BankDetailsCard";
+import ModalAddSystemAccount from "./ModalAddSystemAccount";
+import SystemAccountTable from "./SystemAccountTable";
 
-const BankDetails = () => {
+const SystemAccount = () => {
   const [itemEdit, setItemEdit] = React.useState();
   const { store, dispatch } = React.useContext(StoreContext);
 
@@ -25,12 +24,12 @@ const BankDetails = () => {
       <Header />
       <section className="main__grid">
         <aside className={`${store.isMenuOpen ? "active" : ""}`}>
-          <Navigation menu="settings" submenu="settingsBankDetails" />
+          <Navigation menu="settings" submenu="settingsSystemAccount" />
         </aside>
-        <main className="px-6 md:px-10 overflow-y-auto">
+        <main className="px-6 md:px-10">
           {store.isMenuOpen ? <div className="overlay"></div> : ""}
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
-            <h1 className="text-4xl font-bold">Bank Details</h1>
+            <h1 className="text-4xl font-bold">System Account</h1>
             <Breadcrumbs />
           </div>
           <div className="lg:bg-white mb-12 lg:mb-0 lg:py-8 lg:mt-2">
@@ -38,19 +37,19 @@ const BankDetails = () => {
               className="flex items-center justify-center text-sm rounded-md gap-3 py-2 pl-10 pr-12 bg-secondary lg:ml-4 text-white hover:bg-blend-darken w-full lg:w-auto"
               onClick={handleAdd}
             >
-              <PlusSvg /> Add Bank Details
+              <PlusSvg /> Add System Account
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 overflow-x-auto relative">
-            <BankDetailsCard setItemEdit={setItemEdit} />
+          <div className="bg-white pt-8 pb-6 mt-8 px-4 lg:mt-4 overflow-x-auto">
+            <SystemAccountTable setItemEdit={setItemEdit} />
           </div>
         </main>
       </section>
-      {store.isAdd && <ModalAddBankDetails itemEdit={itemEdit} />}
+      {store.isAdd && <ModalAddSystemAccount itemEdit={itemEdit} />}
       {store.isSuccess && <Toast />}
       {store.error && <ModalError />}
     </>
   );
 };
 
-export default BankDetails;
+export default SystemAccount;

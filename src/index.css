@@ -167,8 +167,9 @@
     @apply flex gap-4;
   }
   .bank__details__item {
-    @apply min-h-[200px] min-w-[400px] lg:min-h-[200px] lg:min-w-[300px] border-2 items-center justify-center rounded-md shadow-sm p-4;
+    @apply min-h-[200px] min-w-[400px] lg:min-h-[200px] lg:min-w-[300px] border-2 items-center justify-center rounded-md shadow-md p-4;
   }
+
   .bank__details__wrapper ul.bank__details__data li {
     @apply grid grid-cols-2 gap-8 text-sm;
   }
