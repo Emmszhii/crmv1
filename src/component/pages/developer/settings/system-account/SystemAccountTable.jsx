@@ -61,7 +61,7 @@ const SystemAccountTable = ({ setItemEdit }) => {
     },
     refetchOnWindowFocus: true,
     // networkMode: "always",
-    cacheTime: 200,
+    // cacheTime: 200,
   });
 
   React.useEffect(() => {

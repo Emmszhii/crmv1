@@ -1,5 +1,5 @@
 import React from "react";
-import { setIsAdd } from "../../../../../store/StoreAction";
+import { setIsAdd, setIsSettingsOpen } from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
 import Breadcrumbs from "../../../../partials/Breadcrumbs";
 import Header from "../../../../partials/Header";
@@ -19,6 +19,10 @@ const BankDetails = () => {
     dispatch(setIsAdd(true));
     setItemEdit(null);
   };
+
+  React.useEffect(() => {
+    dispatch(setIsSettingsOpen(true));
+  }, []);
 
   return (
     <>
