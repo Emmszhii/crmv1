@@ -2,18 +2,9 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { setError, setIsSearch, setMessage } from "../../store/StoreAction";
 
-const Searchbar = ({
-  search,
-  dispatch,
-  store,
-  result,
-  isFetching,
-  setOnSearch,
-  onSearch,
-}) => {
+const Searchbar = ({ search, dispatch, store, result, isFetching }) => {
   const handleChange = (e) => {
     if (e.target.value === "") {
-      setOnSearch(!onSearch);
       dispatch(setIsSearch(false));
     }
   };
@@ -23,12 +14,10 @@ const Searchbar = ({
     let val = search.current.value;
 
     if (val === " " || val === "") {
-      setOnSearch(!onSearch);
       dispatch(setIsSearch(false));
       dispatch(setError(true));
       dispatch(setMessage("Search Keyword cannot be space only or blank."));
     } else {
-      setOnSearch(!onSearch);
       dispatch(setIsSearch(true));
     }
   };

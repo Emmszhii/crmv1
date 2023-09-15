@@ -35,7 +35,6 @@ const BankDetailsTable = ({ setItemEdit }) => {
   const [item, setItem] = React.useState(null);
   // SEARCH and LOADMORE
   const [page, setPage] = React.useState(1);
-  const [onSearch, setOnSearch] = React.useState(false);
   const search = React.useRef(null);
   const { ref, inView } = useInView();
   // Counters
@@ -52,7 +51,7 @@ const BankDetailsTable = ({ setItemEdit }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["settings-bank-details", onSearch, store.isSearch],
+    queryKey: ["settings-bank-details", store.isSearch],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
         `/v1/controllers/developer/settings/bank-details/search.php`, // search endpoint
@@ -99,8 +98,6 @@ const BankDetailsTable = ({ setItemEdit }) => {
     setItem(item);
     console.log(store.isArhive);
   };
-  console.log(isFetchingNextPage);
-  console.log(hasNextPage);
 
   console.log(result);
   return (
@@ -111,31 +108,30 @@ const BankDetailsTable = ({ setItemEdit }) => {
         store={store}
         result={result?.pages}
         isFetching={isFetching}
-        setOnSearch={setOnSearch}
-        onSearch={onSearch}
       />
 
       <div className="bank__details__wrapper relative">
-        <ul className="bank__details__cards">
-          {isFetching && status !== "loading" && <FetchingSpinner />}
+        {isFetching && status !== "loading" && <FetchingSpinner />}
 
-          {(status == "loading" || result?.pages[0].data.length === 0) &&
-            (status == "loading" ? (
-              <FetchingSpinner />
-            ) : (
-              <div className="flex py-8 flex-col gap-1 items-center">
-                <IconNoData />
-                <h2>No Data</h2>
-              </div>
-            ))}
-
-          {error && (
-            <div className="text-center p-10">
-              <IconServerError />
-              <h2 className="pt-2">Server Error</h2>
+        {(status == "loading" || result?.pages[0].data.length == 0) &&
+          (status == "loading" ? (
+            <FetchingSpinner />
+          ) : (
+            <div className="flex py-8 flex-col gap-1 items-center">
+              <IconNoData />
+              <h2>No Data</h2>
             </div>
-          )}
+          ))}
 
+        {error && (
+          <div className="text-center p-10 mx-auto">
+            <div className="flex justify-center items-center">
+              <IconServerError />
+            </div>
+            <h2 className="pt-2">Server Error</h2>
+          </div>
+        )}
+        <ul className="bank__details__cards">
           {result?.pages.map((page, key) => {
             return (
               <React.Fragment key={key}>
