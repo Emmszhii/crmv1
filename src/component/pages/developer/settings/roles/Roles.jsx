@@ -1,5 +1,5 @@
 import React from "react";
-import { setIsAdd, setIsSettingsOpen } from "../../../../../store/StoreAction";
+import { setIsAdd, setIsMenuOpen, setIsSettingsOpen } from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
 import Breadcrumbs from "../../../../partials/Breadcrumbs";
 import Header from "../../../../partials/Header";
@@ -20,6 +20,7 @@ const Roles = () => {
   };
   React.useEffect(() => {
     dispatch(setIsSettingsOpen(true));
+    dispatch(setIsMenuOpen(false));
   }, []);
 
   return (

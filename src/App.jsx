@@ -5,6 +5,7 @@ import Roles from "./component/pages/developer/settings/roles/Roles";
 import BankDetails from "./component/pages/developer/settings/bank-details/BankDetails";
 import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
 import SystemAccountView from "./component/pages/developer/settings/system-account/view/SystemAccountView";
+import ClientList from "./component/pages/developer/client/list/ClientList";
 
 function App() {
   // Create a client
@@ -16,6 +17,9 @@ function App() {
           <Router>
             <Routes>
               <Route path={"*"} element={<Roles />} />
+              {/* CLIENT */}
+              <Route path={"/client/list"} element={<ClientList />} />
+              {/* SETTINGS */}
               <Route path={"/settings/roles"} element={<Roles />} />
               <Route
                 path={"/settings/bank-details"}

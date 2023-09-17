@@ -200,3 +200,9 @@ export const setIsArchive = (val) => {
     payload: val,
   };
 };
+export const setIsClientOpen = (val) => {
+  return {
+    type: "IS_CLIENT_OPEN",
+    payload: val,
+  };
+};

@@ -4,7 +4,13 @@ import { PiCaretRight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../store/StoreContext";
 import { devNavUrl } from "../helpers/functions-general";
-import { setIsSearch, setStartIndex } from "../../store/StoreAction";
+import {
+  setIsClientOpen,
+  setIsMenuOpen,
+  setIsSearch,
+  setIsSettingsOpen,
+  setStartIndex,
+} from "../../store/StoreAction";
 
 const Navigation = ({ menu, submenu = "null" }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -14,12 +20,55 @@ const Navigation = ({ menu, submenu = "null" }) => {
     dispatch(setStartIndex(0));
   };
 
+  const handleShowSettings = () => {
+    dispatch(setIsClientOpen(false));
+    dispatch(setIsSettingsOpen(true));
+  };
+  const handleShowClient = () => {
+    dispatch(setIsSettingsOpen(false));
+    dispatch(setIsClientOpen(true));
+  };
+
   return (
     <>
       <div className="h-[calc(100vh_-_83px)] bg-white pt-8 pl-4 lg:pl-8 w-60 md:w-80 lg:w-auto">
         <ul>
+          <li className={`nav__link ${store.isClientOpen ? "active" : ""}`}>
+            <button
+              className="flex items-center gap-3 w-full px-2 py-1"
+              onClick={handleShowClient}
+            >
+              <div className="flex items-center gap-3 text-[17px]">
+                <BsFillGearFill /> Client
+              </div>
+              <PiCaretRight
+                className={`${store.isClientOpen ? "rotate-90" : ""}`}
+              />
+            </button>
+            <div className="sub__menu">
+              <ul>
+                <li
+                  className={`sub__link ${
+                    submenu === "clientList" ? "active" : ""
+                  }`}
+                >
+                  <Link to={`${devNavUrl}/client/list`}>List</Link>
+                </li>
+                <li
+                  className={`sub__link ${
+                    submenu === "clientAccount" ? "active" : ""
+                  }`}
+                >
+                  <Link to={`${devNavUrl}/list/account`}>Account</Link>
+                </li>
+              </ul>
+            </div>
+          </li>
           <li className={`nav__link ${store.isSettingsOpen ? "active" : ""}`}>
-            <button className="flex items-center gap-3 w-full px-2 py-1">
+            <button
+              className="flex items-center gap-3 w-full px-2 py-1"
+              onClick={handleShowSettings}
+            >
               <div className="flex items-center gap-3 text-[17px]">
                 <BsFillGearFill /> Settings
               </div>

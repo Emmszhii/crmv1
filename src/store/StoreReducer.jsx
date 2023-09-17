@@ -156,6 +156,12 @@ export const StoreReducer = (state, action) => {
         isSettingsOpen: action.payload,
       };
 
+    case "IS_CLIENT_OPEN":
+      return {
+        ...state,
+        isClientOpen: action.payload,
+      };
+
     case "IS_MENU_OPEN":
       return {
         ...state,
