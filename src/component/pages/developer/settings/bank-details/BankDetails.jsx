@@ -7,9 +7,8 @@ import ModalError from "../../../../partials/Modals/ModalError";
 import Navigation from "../../../../partials/Navigation";
 import Toast from "../../../../partials/Toast";
 import PlusSvg from "../../../../svg/PlusSvg";
-import BankDetailsTable from "./BankDetailsTable";
-import ModalAddBankDetails from "./ModalAddBankDetails";
 import BankDetailsCard from "./BankDetailsCard";
+import ModalAddBankDetails from "./ModalAddBankDetails";
 
 const BankDetails = () => {
   const [itemEdit, setItemEdit] = React.useState();

@@ -4,6 +4,7 @@ import { StoreProvider } from "./store/StoreContext";
 import Roles from "./component/pages/developer/settings/roles/Roles";
 import BankDetails from "./component/pages/developer/settings/bank-details/BankDetails";
 import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
+import SystemAccountView from "./component/pages/developer/settings/system-account/view/SystemAccountView";
 
 function App() {
   // Create a client
@@ -23,6 +24,10 @@ function App() {
               <Route
                 path={"/settings/system-account"}
                 element={<SystemAccount />}
+              />
+              <Route
+                path={"/settings/system-account/view"}
+                element={<SystemAccountView />}
               />
             </Routes>
           </Router>

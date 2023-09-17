@@ -23,6 +23,9 @@ import ModalDelete from "./ModalDelete.jsx";
 import ModalRestore from "./ModalRestore.jsx";
 import IconServerError from "../../../../svg/IconServerError.jsx";
 import Nodata from "../../../../partials/Nodata.jsx";
+import { FaRegEye } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { devNavUrl } from "../../../../helpers/functions-general.jsx";
 const SystemAccountTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [item, setItem] = React.useState(null);
@@ -102,7 +105,7 @@ const SystemAccountTable = ({ setItemEdit }) => {
           isFetching={isFetching}
         />
       </div>
-      <div className=" relative">
+      <div className="relative">
         {isFetching && status !== "loading" && <FetchingSpinner />}
         <table>
           <thead>
@@ -116,22 +119,22 @@ const SystemAccountTable = ({ setItemEdit }) => {
             </tr>
           </thead>
           <tbody>
-            {(status === "loading" || result?.pages[0].data.length === 0) && (
-              <tr className="text-center ">
-                <td colSpan="100%" className="p-10">
-                  {status === "loading" ? (
+            {(status === "loading" || result?.pages[0].data.length === 0) &&
+              (status === "loading" ? (
+                <tr className="text-center ">
+                  <td colSpan="100%" className="p-10">
                     <TableLoading count={20} cols={3} />
-                  ) : (
-                    <>
-                      <div className="flex justify-center py-2 ">
-                        <Nodata />
-                      </div>
-                    </>
-                  )}
-                </td>
-              </tr>
-            )}
-
+                  </td>
+                </tr>
+              ) : (
+                <tr className="text-center ">
+                  <td colSpan="100%" className="p-10">
+                    <div className="flex justify-center py-2 ">
+                      <Nodata />
+                    </div>
+                  </td>
+                </tr>
+              ))}
             {error && (
               <tr className="text-center ">
                 <td colSpan="100%" className="p-10">
@@ -171,6 +174,16 @@ const SystemAccountTable = ({ setItemEdit }) => {
                           <td className="table__action">
                             {item.system_account_is_active === 1 ? (
                               <>
+                                <Link
+                                  to={`${devNavUrl}/settings/system-account/view?systemAccountId=${item.system_account_aid}`}
+                                >
+                                  <button
+                                    className="tooltip"
+                                    data-tooltip="View"
+                                  >
+                                    <FaRegEye />
+                                  </button>
+                                </Link>
                                 <button
                                   className="tooltip"
                                   data-tooltip="Edit"
@@ -188,6 +201,16 @@ const SystemAccountTable = ({ setItemEdit }) => {
                               </>
                             ) : (
                               <>
+                                <Link
+                                  to={`${devNavUrl}/settings/system-account/view?systemAccountId=${item.system_account_aid}`}
+                                >
+                                  <button
+                                    className="tooltip"
+                                    data-tooltip="View"
+                                  >
+                                    <FaRegEye />
+                                  </button>
+                                </Link>
                                 <button
                                   className="tooltip"
                                   data-tooltip="Restore"

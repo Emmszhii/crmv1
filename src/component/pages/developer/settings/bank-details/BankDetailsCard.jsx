@@ -1,7 +1,9 @@
+import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
-import { MdDelete, MdRestore, MdRestorePage } from "react-icons/md";
-import { BiSolidArchiveOut } from "react-icons/bi";
 import { FiArchive, FiEdit3 } from "react-icons/fi";
+import { MdRestore } from "react-icons/md";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { useInView } from "react-intersection-observer";
 import {
   setIsAdd,
   setIsArchive,
@@ -9,26 +11,18 @@ import {
   setIsRestore,
 } from "../../../../../store/StoreAction.jsx";
 import { StoreContext } from "../../../../../store/StoreContext.jsx";
-import useQueryData from "../../../../custom-hooks/useQueryData.jsx";
-import ModalSuccess from "../../../../partials/Modals/ModalSuccess.jsx";
-import TableLoading from "../../../../partials/TableLoading.jsx";
-import TableSpinner from "../../../../partials/spinners/TableSpinner.jsx";
-import EditSvg from "../../../../svg/EditSvg.jsx";
-import ModalDelete from "./ModalDelete.jsx";
-import ModalArchive from "./ModalArchive.jsx";
-import ModalRestore from "./ModalRestore.jsx";
+import { queryDataInfinite } from "../../../../helpers/queryDataInfinite.jsx";
+import Loadmore from "../../../../partials/Loadmore.jsx";
 import Pills from "../../../../partials/Pills.jsx";
+import Searchbar from "../../../../partials/Searchbar.jsx";
 import Toast from "../../../../partials/Toast.jsx";
 import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
-import Searchbar from "../../../../partials/Searchbar.jsx";
-import { useInView } from "react-intersection-observer";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { queryDataInfinite } from "../../../../helpers/queryDataInfinite.jsx";
-import Nodata from "../../../../partials/Nodata.jsx";
 import IconNoData from "../../../../svg/IconNoData.jsx";
 import IconServerError from "../../../../svg/IconServerError.jsx";
-import Loadmore from "../../../../partials/Loadmore.jsx";
-import { RiDeleteBinLine } from "react-icons/ri";
+import ModalArchive from "./ModalArchive.jsx";
+import ModalDelete from "./ModalDelete.jsx";
+import ModalRestore from "./ModalRestore.jsx";
+import TableLoading from "../../../../partials/TableLoading.jsx";
 
 const BankDetailsCard = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -96,18 +90,8 @@ const BankDetailsCard = ({ setItemEdit }) => {
   const handleArchive = (item) => {
     dispatch(setIsArchive(!store.isArchive));
     setItem(item);
-    console.log(store.isArhive);
   };
 
-  console.log(result, store.isSearch);
-  console.log(
-    "page1",
-    page === result?.pages[0].total_pages,
-    page,
-    result?.pages[0].total_pages,
-    isFetchingNextPage,
-    result
-  );
   return (
     <>
       <Searchbar
@@ -120,10 +104,12 @@ const BankDetailsCard = ({ setItemEdit }) => {
 
       <div className="bank__details__wrapper relative">
         {isFetching && status !== "loading" && <FetchingSpinner />}
-
         {(status == "loading" || result?.pages[0].data.length == 0) &&
           (status == "loading" ? (
-            <FetchingSpinner />
+            <>
+              <TableLoading cols={2} count={12} />
+              <TableLoading cols={2} count={12} />
+            </>
           ) : (
             <div className="flex py-8 flex-col gap-1 items-center">
               <IconNoData />

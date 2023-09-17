@@ -14,7 +14,7 @@ $systemAccount = new SystemAccount($conn);
 // validate api key 
 if (array_key_exists("start", $_GET)) {
     $systemAccount->system_account_start = $_GET['start'];
-    $systemAccount->system_account_total = 3;
+    $systemAccount->system_account_total = 10;
 
     // check to see if tas id in query string is not empty and is number, if not return json
     checkLimitId($systemAccount->system_account_start, $systemAccount->system_account_total);

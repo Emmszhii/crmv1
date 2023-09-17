@@ -136,7 +136,7 @@
     @apply relative before:content-['>'] before:-right-3.5 before:absolute;
   }
   .breadcrumbs li:last-child a {
-    @apply before:hidden;
+    @apply before:hidden text-alert;
   }
   .modal__main {
     @apply flex flex-col;
