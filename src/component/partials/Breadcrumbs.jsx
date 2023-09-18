@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { StoreContext } from "../../store/StoreContext";
+import { devNavUrl } from "../helpers/functions-general";
 
 const Breadcrumbs = ({ param = "" }) => {
   const { dispatch } = React.useContext(StoreContext);
@@ -23,7 +24,10 @@ const Breadcrumbs = ({ param = "" }) => {
           currentLink += `/${link.replace(" ", "-")}`;
           return (
             <li key={key}>
-              <Link to={`${currentLink}${param}`} onClick={handleClick}>
+              <Link
+                to={`${devNavUrl}${currentLink}${param}`}
+                onClick={handleClick}
+              >
                 {link.replace("-", " ").replace("_", "/")}
               </Link>
             </li>

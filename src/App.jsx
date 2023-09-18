@@ -6,6 +6,8 @@ import BankDetails from "./component/pages/developer/settings/bank-details/BankD
 import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
 import SystemAccountView from "./component/pages/developer/settings/system-account/view/SystemAccountView";
 import ClientList from "./component/pages/developer/client/list/ClientList";
+import Account from "./component/pages/developer/client/account/Account";
+import AccountView from "./component/pages/developer/client/account/view/AccountView";
 
 function App() {
   // Create a client
@@ -19,6 +21,8 @@ function App() {
               <Route path={"*"} element={<Roles />} />
               {/* CLIENT */}
               <Route path={"/client/list"} element={<ClientList />} />
+              <Route path={"/client/account"} element={<Account />} />
+              <Route path={"/client/account/view"} element={<AccountView />} />
               {/* SETTINGS */}
               <Route path={"/settings/roles"} element={<Roles />} />
               <Route

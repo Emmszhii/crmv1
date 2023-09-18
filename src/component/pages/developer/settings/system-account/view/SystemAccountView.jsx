@@ -1,13 +1,11 @@
 import React from "react";
+import { setIsSettingsOpen } from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import useQueryData from "../../../../../custom-hooks/useQueryData";
+import { getUrlParam } from "../../../../../helpers/functions-general";
+import Breadcrumbs from "../../../../../partials/Breadcrumbs";
 import Header from "../../../../../partials/Header";
 import Navigation from "../../../../../partials/Navigation";
-import { StoreContext } from "../../../../../../store/StoreContext";
-import Breadcrumbs from "../../../../../partials/Breadcrumbs";
-import { getUrlParam } from "../../../../../helpers/functions-general";
-import useQueryData from "../../../../../custom-hooks/useQueryData";
-import { setIsSettingsOpen } from "../../../../../../store/StoreAction";
-import IconServerError from "../../../../../svg/IconServerError";
-import Nodata from "../../../../../partials/Nodata";
 import Pills from "../../../../../partials/Pills";
 import ServerError from "../../../../../partials/ServerError";
 

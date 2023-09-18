@@ -59,7 +59,7 @@ const Navigation = ({ menu, submenu = "null" }) => {
                     submenu === "clientAccount" ? "active" : ""
                   }`}
                 >
-                  <Link to={`${devNavUrl}/list/account`}>Account</Link>
+                  <Link to={`${devNavUrl}/client/account`}>Account</Link>
                 </li>
               </ul>
             </div>

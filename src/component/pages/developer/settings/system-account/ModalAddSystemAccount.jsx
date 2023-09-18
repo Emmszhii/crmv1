@@ -74,8 +74,7 @@ const ModalAddSystemAccount = ({ itemEdit }) => {
         >
           <div className="modal__header relative p-4">
             <h3 className="font-bold">
-              {" "}
-              {itemEdit ? "Update" : "Add"} System Account{" "}
+              {itemEdit ? "Update" : "Add"} System Account
             </h3>
             <button className="absolute top-4 right-4" onClick={handleClose}>
               <FaTimes className="text-gray-700 text-sm" />
