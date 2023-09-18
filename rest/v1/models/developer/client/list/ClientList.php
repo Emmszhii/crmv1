@@ -23,7 +23,7 @@ class ClientList
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblClientList = "crm_training_client_list";
+        $this->tblClientList = "crmv1_client_list";
     }
 
     // create

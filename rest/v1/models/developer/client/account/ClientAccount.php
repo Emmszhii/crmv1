@@ -23,7 +23,7 @@ class ClientAccount
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblClientAccount = "crm_training_client_account";
+        $this->tblClientAccount = "crmv1_client_account";
     }
 
     // create

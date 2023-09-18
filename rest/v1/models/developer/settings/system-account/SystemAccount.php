@@ -20,7 +20,7 @@ class SystemAccount
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblSystemAccount = "crm_training_system_account";
+        $this->tblSystemAccount = "crmv1_settings_system_account";
     }
 
     // create

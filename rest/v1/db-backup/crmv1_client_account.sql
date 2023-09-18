@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2023 at 07:07 AM
+-- Generation Time: Sep 18, 2023 at 01:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `crm_training`
+-- Database: `crmv1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `crm_training_client_account`
+-- Table structure for table `crmv1_client_account`
 --
 
-CREATE TABLE `crm_training_client_account` (
+CREATE TABLE `crmv1_client_account` (
   `client_account_aid` int(11) NOT NULL,
   `client_account_contact_name` varchar(100) NOT NULL,
   `client_account_contact_email` varchar(100) NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE `crm_training_client_account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `crm_training_client_account`
+-- Dumping data for table `crmv1_client_account`
 --
 
-INSERT INTO `crm_training_client_account` (`client_account_aid`, `client_account_contact_name`, `client_account_contact_email`, `client_account_number`, `client_account_company_name`, `client_account_role`, `client_account_is_active`, `client_account_created_at`, `client_account_update_at`) VALUES
+INSERT INTO `crmv1_client_account` (`client_account_aid`, `client_account_contact_name`, `client_account_contact_email`, `client_account_number`, `client_account_company_name`, `client_account_role`, `client_account_is_active`, `client_account_created_at`, `client_account_update_at`) VALUES
 (2, 'test222', 'test', 'test', 'test1', 'test22', 1, '2023-09-18 09:37:17', '2023-09-18 10:00:29'),
 (3, 'sample121', 'sampole', 'sample3', 'sample1', 'sample1133', 0, '2023-09-18 10:00:40', '2023-09-18 13:05:00'),
 (4, 'testing', 'testing', 'testing', 'testing', 'testing', 1, '2023-09-18 10:00:50', '2023-09-18 10:00:50'),
@@ -59,9 +59,9 @@ INSERT INTO `crm_training_client_account` (`client_account_aid`, `client_account
 --
 
 --
--- Indexes for table `crm_training_client_account`
+-- Indexes for table `crmv1_client_account`
 --
-ALTER TABLE `crm_training_client_account`
+ALTER TABLE `crmv1_client_account`
   ADD PRIMARY KEY (`client_account_aid`);
 
 --
@@ -69,9 +69,9 @@ ALTER TABLE `crm_training_client_account`
 --
 
 --
--- AUTO_INCREMENT for table `crm_training_client_account`
+-- AUTO_INCREMENT for table `crmv1_client_account`
 --
-ALTER TABLE `crm_training_client_account`
+ALTER TABLE `crmv1_client_account`
   MODIFY `client_account_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 

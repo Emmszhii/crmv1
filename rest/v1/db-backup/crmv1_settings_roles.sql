@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2023 at 04:27 AM
+-- Generation Time: Sep 18, 2023 at 01:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `crm_training`
+-- Database: `crmv1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `crm_training_roles`
+-- Table structure for table `crmv1_settings_roles`
 --
 
-CREATE TABLE `crm_training_roles` (
+CREATE TABLE `crmv1_settings_roles` (
   `roles_aid` int(11) NOT NULL,
   `roles_name` varchar(100) NOT NULL,
   `roles_description` text NOT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `crm_training_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `crm_training_roles`
+-- Dumping data for table `crmv1_settings_roles`
 --
 
-INSERT INTO `crm_training_roles` (`roles_aid`, `roles_name`, `roles_description`, `roles_is_active`, `roles_created_at`, `roles_updated_at`) VALUES
+INSERT INTO `crmv1_settings_roles` (`roles_aid`, `roles_name`, `roles_description`, `roles_is_active`, `roles_created_at`, `roles_updated_at`) VALUES
 (5, 'sample', 'sample', 1, '2023-09-12 09:20:10', '2023-09-12 09:22:46'),
 (6, 'hix', 'hi', 1, '2023-09-12 09:25:44', '2023-09-12 10:14:16'),
 (11, '1', '1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 1, '2023-09-12 10:02:09', '2023-09-12 10:02:09'),
@@ -52,9 +52,9 @@ INSERT INTO `crm_training_roles` (`roles_aid`, `roles_name`, `roles_description`
 --
 
 --
--- Indexes for table `crm_training_roles`
+-- Indexes for table `crmv1_settings_roles`
 --
-ALTER TABLE `crm_training_roles`
+ALTER TABLE `crmv1_settings_roles`
   ADD PRIMARY KEY (`roles_aid`);
 
 --
@@ -62,9 +62,9 @@ ALTER TABLE `crm_training_roles`
 --
 
 --
--- AUTO_INCREMENT for table `crm_training_roles`
+-- AUTO_INCREMENT for table `crmv1_settings_roles`
 --
-ALTER TABLE `crm_training_roles`
+ALTER TABLE `crmv1_settings_roles`
   MODIFY `roles_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 

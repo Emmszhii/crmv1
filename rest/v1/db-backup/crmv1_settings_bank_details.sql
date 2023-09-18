@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2023 at 08:57 AM
+-- Generation Time: Sep 18, 2023 at 01:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `crm_training`
+-- Database: `crmv1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `crm_training_bank_details`
+-- Table structure for table `crmv1_settings_bank_details`
 --
 
-CREATE TABLE `crm_training_bank_details` (
+CREATE TABLE `crmv1_settings_bank_details` (
   `bank_details_aid` int(11) NOT NULL,
   `bank_details_bank_name` varchar(100) NOT NULL,
   `bank_details_account_name` varchar(100) NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE `crm_training_bank_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `crm_training_bank_details`
+-- Dumping data for table `crmv1_settings_bank_details`
 --
 
-INSERT INTO `crm_training_bank_details` (`bank_details_aid`, `bank_details_bank_name`, `bank_details_account_name`, `bank_details_account_number`, `bank_details_location`, `bank_details_is_active`, `bank_details_created_at`, `bank_details_updated_at`) VALUES
+INSERT INTO `crmv1_settings_bank_details` (`bank_details_aid`, `bank_details_bank_name`, `bank_details_account_name`, `bank_details_account_number`, `bank_details_location`, `bank_details_is_active`, `bank_details_created_at`, `bank_details_updated_at`) VALUES
 (1, 'test', 'test', 'test', 'test', 1, '2023-09-14 13:08:12', '2023-09-14 13:08:12'),
 (3, 'sample', 'sample', 'sample', 'sample', 1, '2023-09-14 13:12:22', '2023-09-14 13:12:22'),
 (4, 'sample11', 'sample11', 'sample11', 'sample11', 0, '2023-09-14 13:12:37', '2023-09-14 13:31:56'),
@@ -58,9 +58,9 @@ INSERT INTO `crm_training_bank_details` (`bank_details_aid`, `bank_details_bank_
 --
 
 --
--- Indexes for table `crm_training_bank_details`
+-- Indexes for table `crmv1_settings_bank_details`
 --
-ALTER TABLE `crm_training_bank_details`
+ALTER TABLE `crmv1_settings_bank_details`
   ADD PRIMARY KEY (`bank_details_aid`);
 
 --
@@ -68,9 +68,9 @@ ALTER TABLE `crm_training_bank_details`
 --
 
 --
--- AUTO_INCREMENT for table `crm_training_bank_details`
+-- AUTO_INCREMENT for table `crmv1_settings_bank_details`
 --
-ALTER TABLE `crm_training_bank_details`
+ALTER TABLE `crmv1_settings_bank_details`
   MODIFY `bank_details_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 

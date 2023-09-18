@@ -20,7 +20,7 @@ class Roles
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblRoles = "crm_training_roles";
+        $this->tblRoles = "crmv1_settings_roles";
     }
 
     // create

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2023 at 06:29 AM
+-- Generation Time: Sep 18, 2023 at 01:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `crm_training`
+-- Database: `crmv1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `crm_training_system_account`
+-- Table structure for table `crmv1_settings_system_account`
 --
 
-CREATE TABLE `crm_training_system_account` (
+CREATE TABLE `crmv1_settings_system_account` (
   `system_account_aid` int(11) NOT NULL,
   `system_account_name` varchar(100) NOT NULL,
   `system_account_email` varchar(100) NOT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE `crm_training_system_account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `crm_training_system_account`
+-- Dumping data for table `crmv1_settings_system_account`
 --
 
-INSERT INTO `crm_training_system_account` (`system_account_aid`, `system_account_name`, `system_account_email`, `system_account_role`, `system_account_is_active`, `system_account_created_at`, `system_account_updated_at`) VALUES
+INSERT INTO `crmv1_settings_system_account` (`system_account_aid`, `system_account_name`, `system_account_email`, `system_account_role`, `system_account_is_active`, `system_account_created_at`, `system_account_updated_at`) VALUES
 (5, 'emmanuel', 'emmanuel@gmail.com', 'sadasda', 1, '2023-09-15 12:16:42', '2023-09-15 12:22:34'),
 (6, 'hehehhe', 'heheh@gmail.com', 'sdasda', 1, '2023-09-15 12:23:27', '2023-09-15 12:23:27'),
 (7, 'hahah', 'emms@gmail.com', 'hjashgjd', 1, '2023-09-15 12:23:46', '2023-09-15 12:23:46'),
@@ -57,9 +57,9 @@ INSERT INTO `crm_training_system_account` (`system_account_aid`, `system_account
 --
 
 --
--- Indexes for table `crm_training_system_account`
+-- Indexes for table `crmv1_settings_system_account`
 --
-ALTER TABLE `crm_training_system_account`
+ALTER TABLE `crmv1_settings_system_account`
   ADD PRIMARY KEY (`system_account_aid`);
 
 --
@@ -67,9 +67,9 @@ ALTER TABLE `crm_training_system_account`
 --
 
 --
--- AUTO_INCREMENT for table `crm_training_system_account`
+-- AUTO_INCREMENT for table `crmv1_settings_system_account`
 --
-ALTER TABLE `crm_training_system_account`
+ALTER TABLE `crmv1_settings_system_account`
   MODIFY `system_account_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 

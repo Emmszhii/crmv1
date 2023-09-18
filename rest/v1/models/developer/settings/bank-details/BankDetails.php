@@ -23,7 +23,7 @@ class BankDetails
     public function __construct($db)
     {
         $this->connection = $db;
-        $this->tblBankDetails = "crm_training_bank_details";
+        $this->tblBankDetails = "crmv1_settings_bank_details";
     }
 
     // create

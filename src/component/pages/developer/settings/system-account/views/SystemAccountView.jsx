@@ -60,7 +60,9 @@ const SystemAccountView = () => {
           <div className="bg-white pt-8 pb-6 mt-8 px-4 lg:mt-4 overflow-x-auto">
             {isFetching && !isLoading && <TableSpinner />}
             {systemAccountView?.error ? (
-              <h1 className="text-center">Page not found</h1>
+              <div className="text-center text-base text-gray-400 font-bold">
+                <h1>Page Not Found</h1>
+              </div>
             ) : (
               <>
                 {(isLoading || systemAccountView?.data.length === 0) && (

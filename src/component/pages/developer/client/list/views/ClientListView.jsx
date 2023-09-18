@@ -61,53 +61,61 @@ const ClientListView = () => {
 
           <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 overflow-x-auto custom__scroll relative">
             {isFetching && !isLoading && <TableSpinner />}
-            {(isLoading || clientListView?.data.length === 0) && (
+            {clientListView?.error ? (
+              <div className="text-center text-base text-gray-400 font-bold">
+                <h1>Page Not Found</h1>
+              </div>
+            ) : (
               <>
-                {isLoading ? (
-                  <TableLoading cols={2} count={20} />
-                ) : (
-                  <div>
-                    <h1>Page Not Found</h1>
-                  </div>
+                {(isLoading || clientListView?.data.length === 0) && (
+                  <>
+                    {isLoading ? (
+                      <TableLoading cols={2} count={20} />
+                    ) : (
+                      <div className="">
+                        <h1>Page Not Found</h1>
+                      </div>
+                    )}
+                  </>
                 )}
+                {error && <ServerError />}
+                {clientListView?.data.map((item, key) => {
+                  return (
+                    <ul key={key}>
+                      <li className="flex justify-end">
+                        <button
+                          className="tooltip"
+                          data-tooltip="Edit"
+                          onClick={() => handleEdit(item)}
+                        >
+                          <EditSvg />
+                        </button>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Account Number : </span>
+                        <p>{item.client_list_account_number}</p>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Company Name : </span>
+                        <p>{item.client_list_company_name}</p>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Company Email : </span>
+                        <p>{item.client_list_company_email}</p>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Contact Email : </span>
+                        <p>{item.client_list_contact_email}</p>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Company Mobile : </span>
+                        <p>{item.client_list_company_mobile}</p>
+                      </li>
+                    </ul>
+                  );
+                })}
               </>
             )}
-            {error && <ServerError />}
-            {clientListView?.data.map((item, key) => {
-              return (
-                <ul key={key}>
-                  <li className="flex justify-end">
-                    <button
-                      className="tooltip"
-                      data-tooltip="Edit"
-                      onClick={() => handleEdit(item)}
-                    >
-                      <EditSvg />
-                    </button>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Account Number : </span>
-                    <p>{item.client_list_account_number}</p>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Company Name : </span>
-                    <p>{item.client_list_company_name}</p>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Company Email : </span>
-                    <p>{item.client_list_company_email}</p>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Contact Email : </span>
-                    <p>{item.client_list_contact_email}</p>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Company Mobile : </span>
-                    <p>{item.client_list_company_mobile}</p>
-                  </li>
-                </ul>
-              );
-            })}
           </div>
         </main>
       </section>

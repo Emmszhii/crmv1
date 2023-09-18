@@ -9,7 +9,7 @@ class Database
 
         // Localhost
         $host = "localhost";
-        $dbname = "crm_training";
+        $dbname = "crmv1";
         $username = "root";
         $password = "";
 
