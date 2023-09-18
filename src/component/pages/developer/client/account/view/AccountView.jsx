@@ -113,7 +113,7 @@ const AccountView = () => {
                       {item.client_account_is_active === 1 ? (
                         <Pills label="Active" />
                       ) : (
-                        <Pills label="Inactive" bgc="bg-gray-300" />
+                        <Pills label="Inactive" bgc="bg-archive" />
                       )}
                     </p>
                   </li>

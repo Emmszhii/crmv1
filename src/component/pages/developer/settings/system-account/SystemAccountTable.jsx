@@ -164,7 +164,7 @@ const SystemAccountTable = ({ setItemEdit }) => {
                               </>
                             ) : (
                               <>
-                                <Pills label="Inactive" bgc="bg-gray-300" />
+                                <Pills label="Inactive" bgc="bg-archive" />
                               </>
                             )}
                           </td>

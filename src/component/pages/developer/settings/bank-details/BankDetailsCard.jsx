@@ -142,7 +142,7 @@ const BankDetailsCard = ({ setItemEdit }) => {
                               {item.bank_details_is_active ? (
                                 <Pills label="Active" bgc="bg-green-600" />
                               ) : (
-                                <Pills label="Inactive" bgc="bg-gray-200" />
+                                <Pills label="Inactive" bgc="bg-archive" />
                               )}
                             </li>
                             {item.bank_details_is_active === 1 ? (
