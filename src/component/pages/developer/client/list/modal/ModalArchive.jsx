@@ -7,14 +7,14 @@ import {
   setMessage,
   setSuccess,
   setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { queryData } from "../../../../helpers/queryData";
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 
 const ModalArchive = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
-
+  console.log(item);
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(

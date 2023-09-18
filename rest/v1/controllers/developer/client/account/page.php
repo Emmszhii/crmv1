@@ -14,7 +14,7 @@ $clientAccount = new ClientAccount($conn);
 // validate api key 
 if (array_key_exists("start", $_GET)) {
     $clientAccount->client_account_start = $_GET['start'];
-    $clientAccount->client_account_total = 10;
+    $clientAccount->client_account_total = 8;
 
     // check to see if tas id in query string is not empty and is number, if not return json
     checkLimitId($clientAccount->client_account_start, $clientAccount->client_account_total);

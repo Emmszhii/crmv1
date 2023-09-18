@@ -5,14 +5,14 @@ import {
   setIsMenuOpen,
 } from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
+import Breadcrumbs from "../../../../partials/Breadcrumbs";
 import Header from "../../../../partials/Header";
 import Navigation from "../../../../partials/Navigation";
-import Breadcrumbs from "../../../../partials/Breadcrumbs";
+import Toast from "../../../../partials/Toast";
 import PlusSvg from "../../../../svg/PlusSvg";
 import ClientListTable from "./ClientListTable";
-import ModalAddClientList from "./ModalAddClientList";
-import Toast from "../../../../partials/Toast";
 import ModalError from "../../../../partials/Modals/ModalError";
+import ModalAddClientList from "./modal/ModalAddClientList";
 
 const ClientList = () => {
   const [itemEdit, setItemEdit] = React.useState();
@@ -35,7 +35,7 @@ const ClientList = () => {
         <aside className={`${store.isMenuOpen ? "active" : ""}`}>
           <Navigation menu="client" submenu="clientList" />
         </aside>
-        <main className="px-6 md:px-10 overflow-y-auto">
+        <main className="px-6 md:px-10 overflow-y-auto custom__scroll">
           {store.isMenuOpen ? <div className="overlay"></div> : ""}
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
             <h1 className="text-4xl font-bold">Client List</h1>
@@ -49,13 +49,13 @@ const ClientList = () => {
               <PlusSvg /> Add Client List
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 overflow-x-auto relative">
+          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 overflow-x-auto custom__scroll relative">
             <ClientListTable setItemEdit={setItemEdit} />
           </div>
         </main>
       </section>
       {store.isAdd && <ModalAddClientList itemEdit={itemEdit} />}
-      {store.isSuccess && <Toast />}
+      {store.success && <Toast />}
       {store.error && <ModalError />}
     </>
   );

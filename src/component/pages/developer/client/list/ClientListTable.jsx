@@ -1,8 +1,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
 import { BiSolidArchiveOut } from "react-icons/bi";
+import { FaRegEye } from "react-icons/fa";
 import { MdDelete, MdRestorePage } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom";
 import {
   setIsAdd,
   setIsArchive,
@@ -10,19 +12,20 @@ import {
   setIsRestore,
 } from "../../../../../store/StoreAction.jsx";
 import { StoreContext } from "../../../../../store/StoreContext.jsx";
+import { devNavUrl } from "../../../../helpers/functions-general.jsx";
 import { queryDataInfinite } from "../../../../helpers/queryDataInfinite.jsx";
 import Loadmore from "../../../../partials/Loadmore.jsx";
+import Nodata from "../../../../partials/Nodata.jsx";
 import Pills from "../../../../partials/Pills.jsx";
 import Searchbar from "../../../../partials/Searchbar.jsx";
+import ServerError from "../../../../partials/ServerError.jsx";
 import TableLoading from "../../../../partials/TableLoading.jsx";
 import Toast from "../../../../partials/Toast.jsx";
 import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
 import EditSvg from "../../../../svg/EditSvg.jsx";
-import ModalArchive from "./ModalArchive.jsx";
-import ModalDelete from "./ModalDelete.jsx";
-import ModalRestore from "./ModalRestore.jsx";
-import ServerError from "../../../../partials/ServerError.jsx";
-import Nodata from "../../../../partials/Nodata.jsx";
+import ModalArchive from "./modal/ModalArchive.jsx";
+import ModalDelete from "./modal/ModalDelete.jsx";
+import ModalRestore from "./modal/ModalRestore.jsx";
 
 const ClientListTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -113,7 +116,7 @@ const ClientListTable = ({ setItemEdit }) => {
               <th>Contact Email</th>
               <th>Company Mobile</th>
               <th>Status</th>
-              <th>Action</th>
+              <th className="!w-24">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -158,15 +161,15 @@ const ClientListTable = ({ setItemEdit }) => {
                           )}
                         </td>
                         <td className="table__action">
+                          <Link
+                            to={`${devNavUrl}/client/list/view?clientListId=${item.client_list_aid}`}
+                          >
+                            <button className="tooltip" data-tooltip="Info">
+                              <FaRegEye />
+                            </button>
+                          </Link>
                           {item.client_list_is_active === 1 ? (
                             <>
-                              <button
-                                className="tooltip"
-                                data-tooltip="Edit"
-                                onClick={() => handleEdit(item)}
-                              >
-                                <EditSvg />
-                              </button>
                               <button
                                 className="tooltip"
                                 data-tooltip="Archive"

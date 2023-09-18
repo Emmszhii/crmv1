@@ -9,12 +9,12 @@ import {
   setMessage,
   setSuccess,
   setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { InputText } from "../../../../helpers/FormInputs";
-import { handleEscape } from "../../../../helpers/functions-general";
-import { queryData } from "../../../../helpers/queryData";
-import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { InputText } from "../../../../../helpers/FormInputs";
+import { handleEscape } from "../../../../../helpers/functions-general";
+import { queryData } from "../../../../../helpers/queryData";
+import ButtonSpinner from "../../../../../partials/spinners/ButtonSpinner";
 
 const ModalAddClientList = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
@@ -95,7 +95,7 @@ const ModalAddClientList = ({ itemEdit }) => {
               <FaTimes className="text-gray-700 text-sm" />
             </button>
           </div>
-          <div className="overflow-auto max-h-[50vh]">
+          <div className="overflow-auto max-h-[50vh] custom__scroll">
             <Formik
               initialValues={initVal}
               validationSchema={yupSchema}

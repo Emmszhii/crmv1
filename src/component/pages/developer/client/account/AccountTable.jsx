@@ -164,7 +164,7 @@ const AccountTable = ({ setItemEdit }) => {
                           <Link
                             to={`${devNavUrl}/client/account/view?clientAccountId=${item.client_account_aid}`}
                           >
-                            <button className="tooltip" data-tooltip="View">
+                            <button className="tooltip" data-tooltip="Info">
                               <FaRegEye />
                             </button>
                           </Link>

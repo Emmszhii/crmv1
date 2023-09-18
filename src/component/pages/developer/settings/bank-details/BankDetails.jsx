@@ -35,7 +35,7 @@ const BankDetails = () => {
         <aside className={`${store.isMenuOpen ? "active" : ""}`}>
           <Navigation menu="settings" submenu="settingsBankDetails" />
         </aside>
-        <main className="px-6 md:px-10 overflow-y-auto">
+        <main className="px-6 md:px-10 overflow-y-auto custom__scroll">
           {store.isMenuOpen ? <div className="overlay"></div> : ""}
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
             <h1 className="text-4xl font-bold">Bank Details</h1>
@@ -49,7 +49,7 @@ const BankDetails = () => {
               <PlusSvg /> Add Bank Details
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 overflow-x-auto relative">
+          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 custom__scroll overflow-x-auto relative">
             <BankDetailsCard setItemEdit={setItemEdit} />
           </div>
         </main>

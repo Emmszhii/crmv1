@@ -8,6 +8,7 @@ import SystemAccountView from "./component/pages/developer/settings/system-accou
 import ClientList from "./component/pages/developer/client/list/ClientList";
 import Account from "./component/pages/developer/client/account/Account";
 import AccountView from "./component/pages/developer/client/account/view/AccountView";
+import ClientListView from "./component/pages/developer/client/list/view/ClientListView";
 
 function App() {
   // Create a client
@@ -21,6 +22,7 @@ function App() {
               <Route path={"*"} element={<Roles />} />
               {/* CLIENT */}
               <Route path={"/client/list"} element={<ClientList />} />
+              <Route path={"/client/list/view"} element={<ClientListView />} />
               <Route path={"/client/account"} element={<Account />} />
               <Route path={"/client/account/view"} element={<AccountView />} />
               {/* SETTINGS */}

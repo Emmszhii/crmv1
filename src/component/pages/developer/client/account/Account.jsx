@@ -49,7 +49,7 @@ const Account = () => {
               <PlusSvg /> Add Account
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 overflow-x-auto relative">
+          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 custom__scroll overflow-x-auto relative">
             <AccountTable setItemEdit={setItemEdit} />
           </div>
         </main>

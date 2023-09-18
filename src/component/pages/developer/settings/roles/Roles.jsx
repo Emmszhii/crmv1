@@ -1,5 +1,9 @@
 import React from "react";
-import { setIsAdd, setIsMenuOpen, setIsSettingsOpen } from "../../../../../store/StoreAction";
+import {
+  setIsAdd,
+  setIsMenuOpen,
+  setIsSettingsOpen,
+} from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
 import Breadcrumbs from "../../../../partials/Breadcrumbs";
 import Header from "../../../../partials/Header";
@@ -30,7 +34,7 @@ const Roles = () => {
         <aside className={`${store.isMenuOpen ? "active" : ""}`}>
           <Navigation menu="settings" submenu="settingsRoles" />
         </aside>
-        <main className="px-6 md:px-10">
+        <main className="px-6 md:px-10 overflow-y-auto custom__scroll">
           {store.isMenuOpen ? <div className="overlay"></div> : ""}
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
             <h1 className="text-4xl font-bold">Roles</h1>
@@ -44,13 +48,13 @@ const Roles = () => {
               <PlusSvg /> Add Role
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-8 lg:mt-4 overflow-x-auto">
+          <div className="bg-white pt-8 pb-6 mt-8 lg:mt-4 custom__scroll overflow-x-auto">
             <RolesTable setItemEdit={setItemEdit} />
           </div>
         </main>
       </section>
       {store.isAdd && <ModalAddRoles itemEdit={itemEdit} />}
-      {store.isSuccess && <Toast />}
+      {store.success && <Toast />}
       {store.error && <ModalError />}
     </>
   );
