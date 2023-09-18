@@ -3,35 +3,34 @@ import React from "react";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
 import {
-  setIsArchive,
   setIsConfirm,
   setMessage,
   setSuccess,
-  setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { queryData } from "../../../../helpers/queryData";
+  setValidate
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 
-const ModalArchive = ({ item, setItem }) => {
+const ModalDelete = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/controllers/developer/settings/system-account/active.php?systemAccountId=${item.system_account_aid}`,
-        "put",
+        `/v1/controllers/developer/settings/roles/roles.php?rolesId=${item.roles_aid}`,
+        "delete",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: `settings-system-account` });
+      queryClient.invalidateQueries({ queryKey: `settings-roles` });
       //   dispatch(setIsRestore(false));
 
       if (data.success) {
-        dispatch(setIsArchive(false));
+        dispatch(setIsConfirm(false));
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Archive succesfully.`));
+        dispatch(setMessage(`Deleted succesfully.`));
       }
       if (!data.success) {
         dispatch(setValidate(true));
@@ -43,12 +42,13 @@ const ModalArchive = ({ item, setItem }) => {
   const handleYes = async () => {
     // // mutate data
     mutation.mutate({
-      isActive: 0,
+      isActive: 1,
+      item: item,
     });
   };
 
   const handleClose = () => {
-    dispatch(setIsArchive(!store.isArchive));
+    dispatch(setIsConfirm(!store.isConfirm));
     setItem(null);
   };
 
@@ -71,11 +71,9 @@ const ModalArchive = ({ item, setItem }) => {
           </div>
           <div className="px-4 pt-4 pb-2 text-center">
             <h3 className="text-sm pb-4">
-              Are you sure you want to archive this?
+              Are you sure you want to delete this?
             </h3>
-            <p className="font-bold text-base">
-              "{item.system_account_name}"
-            </p>
+            <p className="font-bold text-base">"{item.roles_name}"</p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button
@@ -95,4 +93,4 @@ const ModalArchive = ({ item, setItem }) => {
   );
 };
 
-export default ModalArchive;
+export default ModalDelete;

@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Form, Formik } from "formik";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import * as Yup from "yup";
@@ -8,13 +9,12 @@ import {
   setMessage,
   setSuccess,
   setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { InputText, InputTextArea } from "../../../../helpers/FormInputs";
-import { handleEscape } from "../../../../helpers/functions-general";
-import { queryData } from "../../../../helpers/queryData";
-import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
-import { Form, Formik } from "formik";
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { InputText } from "../../../../../helpers/FormInputs";
+import { handleEscape } from "../../../../../helpers/functions-general";
+import { queryData } from "../../../../../helpers/queryData";
+import ButtonSpinner from "../../../../../partials/spinners/ButtonSpinner";
 
 const ModalAddBankDetails = ({ itemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -24,7 +24,7 @@ const ModalAddBankDetails = ({ itemEdit }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/v1/controllers/developer/settings/bank-details/bankDetails.php?rolesId=${itemEdit.bank_details_aid}` //update
+          ? `/v1/controllers/developer/settings/bank-details/bankDetails.php?bankDetailsId=${itemEdit.bank_details_aid}` //update
           : "/v1/controllers/developer/settings/bank-details/bankDetails.php", //add
         itemEdit ? "put" : "post",
         values

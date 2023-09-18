@@ -3,32 +3,30 @@ import React from "react";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
 import {
-  setIsConfirm,
+  setIsRestore,
   setMessage,
   setSuccess,
   setValidate
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { queryData } from "../../../../helpers/queryData";
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 
-const ModalDelete = ({ item, setItem }) => {
+const ModalRestore = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/controllers/developer/settings/roles/roles.php?rolesId=${item.roles_aid}`,
-        "delete",
+        `/v1/controllers/developer/settings/roles/active.php?rolesId=${item.roles_aid}`,
+        "put",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: `settings-roles` });
-      //   dispatch(setIsRestore(false));
-
       if (data.success) {
-        dispatch(setIsConfirm(false));
+        dispatch(setIsRestore(false));
         dispatch(setSuccess(true));
         dispatch(setMessage(`Deleted succesfully.`));
       }
@@ -48,7 +46,7 @@ const ModalDelete = ({ item, setItem }) => {
   };
 
   const handleClose = () => {
-    dispatch(setIsConfirm(!store.isConfirm));
+    dispatch(setIsRestore(!store.isRestore));
     setItem(null);
   };
 
@@ -59,10 +57,10 @@ const ModalDelete = ({ item, setItem }) => {
           className={`absolute mx-1 bg-white border border-gray-200 rounded-md max-w-[420px] w-full shadow-xl`}
         >
           <div className="modal__header relative px-4 pt-8 ">
-            <div className="text-6xl text-warning flex justify-center pb-2">
+            <div className="text-6xl text-success flex justify-center pb-2">
               <AiFillExclamationCircle />
             </div>
-            <h2 className="text-center font-bold text-warning text-lg">
+            <h2 className="text-center font-bold text-success text-lg">
               CONFIRM
             </h2>
             <button className="absolute top-4 right-4" onClick={handleClose}>
@@ -71,19 +69,19 @@ const ModalDelete = ({ item, setItem }) => {
           </div>
           <div className="px-4 pt-4 pb-2 text-center">
             <h3 className="text-sm pb-4">
-              Are you sure you want to delete this?
+              Are you sure you want to restore this?
             </h3>
             <p className="font-bold text-base">"{item.roles_name}"</p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button
-              className="btn btn--outline"
+              className="btn btn--success"
               type="submit"
               onClick={handleYes}
             >
               Proceed
             </button>
-            <button className="btn btn--warning" onClick={handleClose}>
+            <button className="btn btn--outline" onClick={handleClose}>
               Cancel
             </button>
           </div>
@@ -93,4 +91,4 @@ const ModalDelete = ({ item, setItem }) => {
   );
 };
 
-export default ModalDelete;
+export default ModalRestore;

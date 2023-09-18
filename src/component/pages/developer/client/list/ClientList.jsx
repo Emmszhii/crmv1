@@ -7,12 +7,12 @@ import {
 import { StoreContext } from "../../../../../store/StoreContext";
 import Breadcrumbs from "../../../../partials/Breadcrumbs";
 import Header from "../../../../partials/Header";
+import ModalError from "../../../../partials/Modals/ModalError";
 import Navigation from "../../../../partials/Navigation";
 import Toast from "../../../../partials/Toast";
 import PlusSvg from "../../../../svg/PlusSvg";
 import ClientListTable from "./ClientListTable";
-import ModalError from "../../../../partials/Modals/ModalError";
-import ModalAddClientList from "./modal/ModalAddClientList";
+import ModalAddClientList from "./modals/ModalAddClientList";
 
 const ClientList = () => {
   const [itemEdit, setItemEdit] = React.useState();

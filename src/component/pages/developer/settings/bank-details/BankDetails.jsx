@@ -12,7 +12,7 @@ import Navigation from "../../../../partials/Navigation";
 import Toast from "../../../../partials/Toast";
 import PlusSvg from "../../../../svg/PlusSvg";
 import BankDetailsCard from "./BankDetailsCard";
-import ModalAddBankDetails from "./ModalAddBankDetails";
+import ModalAddBankDetails from "./modals/ModalAddBankDetails";
 
 const BankDetails = () => {
   const [itemEdit, setItemEdit] = React.useState();

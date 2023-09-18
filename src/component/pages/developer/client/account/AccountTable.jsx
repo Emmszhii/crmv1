@@ -1,8 +1,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
 import { BiSolidArchiveOut } from "react-icons/bi";
+import { FaRegEye } from "react-icons/fa";
 import { MdDelete, MdRestorePage } from "react-icons/md";
 import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom";
 import {
   setIsAdd,
   setIsArchive,
@@ -10,22 +12,19 @@ import {
   setIsRestore,
 } from "../../../../../store/StoreAction.jsx";
 import { StoreContext } from "../../../../../store/StoreContext.jsx";
+import { devNavUrl } from "../../../../helpers/functions-general.jsx";
 import { queryDataInfinite } from "../../../../helpers/queryDataInfinite.jsx";
 import Loadmore from "../../../../partials/Loadmore.jsx";
+import Nodata from "../../../../partials/Nodata.jsx";
 import Pills from "../../../../partials/Pills.jsx";
 import Searchbar from "../../../../partials/Searchbar.jsx";
+import ServerError from "../../../../partials/ServerError.jsx";
 import TableLoading from "../../../../partials/TableLoading.jsx";
 import Toast from "../../../../partials/Toast.jsx";
 import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
-import EditSvg from "../../../../svg/EditSvg.jsx";
-import ModalArchive from "./ModalArchive.jsx";
-import ModalDelete from "./ModalDelete.jsx";
-import ModalRestore from "./ModalRestore.jsx";
-import ServerError from "../../../../partials/ServerError.jsx";
-import Nodata from "../../../../partials/Nodata.jsx";
-import { FaRegEye } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { devNavUrl } from "../../../../helpers/functions-general.jsx";
+import ModalArchive from "./modals/ModalArchive.jsx";
+import ModalDelete from "./modals/ModalDelete.jsx";
+import ModalRestore from "./modals/ModalRestore.jsx";
 
 const AccountTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);

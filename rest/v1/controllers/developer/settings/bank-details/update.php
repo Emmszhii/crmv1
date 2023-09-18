@@ -13,6 +13,7 @@ if (array_key_exists("bankDetailsId", $_GET)) {
     checkPayload($data);
     // get data
     $bankDetails->bank_details_aid = $_GET['bankDetailsId'];
+    $bankDetails->bank_details_bank_name = checkIndex($data, "bank_details_bank_name");
     $bankDetails->bank_details_account_name = checkIndex($data, "bank_details_account_name");
     $bankDetails->bank_details_account_number = checkIndex($data, "bank_details_account_number");
     $bankDetails->bank_details_location = checkIndex($data, "bank_details_location");
@@ -20,7 +21,7 @@ if (array_key_exists("bankDetailsId", $_GET)) {
     checkId($bankDetails->bank_details_aid);
 
     // check name
-    isNameExist($bankDetails, $bankDetails->bank_details_account_name);
+    isNameExist($bankDetails, $bankDetails->bank_details_bank_name);
     // update
     $query = checkUpdate($bankDetails);
     returnSuccess($bankDetails, "Bank Details", $query);

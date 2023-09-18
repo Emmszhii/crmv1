@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  setIsAdd,
-  setIsClientOpen,
-  setIsMenuOpen,
+    setIsAdd,
+    setIsClientOpen,
+    setIsMenuOpen,
 } from "../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../store/StoreContext";
 import Breadcrumbs from "../../../../partials/Breadcrumbs";
@@ -11,8 +11,8 @@ import ModalError from "../../../../partials/Modals/ModalError";
 import Navigation from "../../../../partials/Navigation";
 import Toast from "../../../../partials/Toast";
 import PlusSvg from "../../../../svg/PlusSvg";
-import ModalAddAccount from "./ModalAddAccount";
 import AccountTable from "./AccountTable";
+import ModalAddAccount from "./modals/ModalAddAccount";
 
 const Account = () => {
   const [itemEdit, setItemEdit] = React.useState();

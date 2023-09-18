@@ -2,14 +2,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 import {
   setIsConfirm,
   setMessage,
   setSuccess,
   setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { queryData } from "../../../../helpers/queryData";
+} from "../../../../../../store/StoreAction";
 
 const ModalDelete = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -73,9 +73,7 @@ const ModalDelete = ({ item, setItem }) => {
             <h3 className="text-sm pb-4">
               Are you sure you want to delete this?
             </h3>
-            <p className="font-bold text-base">
-              "{item.system_account_name}"
-            </p>
+            <p className="font-bold text-base">"{item.system_account_name}"</p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button

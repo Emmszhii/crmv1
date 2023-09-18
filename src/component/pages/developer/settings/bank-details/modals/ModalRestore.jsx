@@ -3,16 +3,15 @@ import React from "react";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
 import {
-  setIsArchive,
-  setIsConfirm,
+  setIsRestore,
   setMessage,
   setSuccess,
-  setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { queryData } from "../../../../helpers/queryData";
+  setValidate
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 
-const ModalArchive = ({ item, setItem }) => {
+const ModalRestore = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
@@ -26,12 +25,10 @@ const ModalArchive = ({ item, setItem }) => {
     onSuccess: (data) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: `settings-bank-details` });
-      //   dispatch(setIsRestore(false));
-
       if (data.success) {
-        dispatch(setIsArchive(false));
+        dispatch(setIsRestore(false));
         dispatch(setSuccess(true));
-        dispatch(setMessage(`Archive succesfully.`));
+        dispatch(setMessage(`Restore succesfully.`));
       }
       if (!data.success) {
         dispatch(setValidate(true));
@@ -43,12 +40,13 @@ const ModalArchive = ({ item, setItem }) => {
   const handleYes = async () => {
     // // mutate data
     mutation.mutate({
-      isActive: 0,
+      isActive: 1,
+      item: item,
     });
   };
 
   const handleClose = () => {
-    dispatch(setIsArchive(!store.isArchive));
+    dispatch(setIsRestore(!store.isRestore));
     setItem(null);
   };
 
@@ -59,10 +57,10 @@ const ModalArchive = ({ item, setItem }) => {
           className={`absolute mx-1 bg-white border border-gray-200 rounded-md max-w-[420px] w-full shadow-xl`}
         >
           <div className="modal__header relative px-4 pt-8 ">
-            <div className="text-6xl text-warning flex justify-center pb-2">
+            <div className="text-6xl text-success flex justify-center pb-2">
               <AiFillExclamationCircle />
             </div>
-            <h2 className="text-center font-bold text-warning text-lg">
+            <h2 className="text-center font-bold text-success text-lg">
               CONFIRM
             </h2>
             <button className="absolute top-4 right-4" onClick={handleClose}>
@@ -71,7 +69,7 @@ const ModalArchive = ({ item, setItem }) => {
           </div>
           <div className="px-4 pt-4 pb-2 text-center">
             <h3 className="text-sm pb-4">
-              Are you sure you want to archive this?
+              Are you sure you want to restore this?
             </h3>
             <p className="font-bold text-base">
               "{item.bank_details_bank_name}"
@@ -79,13 +77,13 @@ const ModalArchive = ({ item, setItem }) => {
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button
-              className="btn btn--outline"
+              className="btn btn--success"
               type="submit"
               onClick={handleYes}
             >
               Proceed
             </button>
-            <button className="btn btn--warning" onClick={handleClose}>
+            <button className="btn btn--outline" onClick={handleClose}>
               Cancel
             </button>
           </div>
@@ -95,4 +93,4 @@ const ModalArchive = ({ item, setItem }) => {
   );
 };
 
-export default ModalArchive;
+export default ModalRestore;

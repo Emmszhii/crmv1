@@ -7,9 +7,9 @@ import {
   setMessage,
   setSuccess,
   setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { queryData } from "../../../../helpers/queryData";
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 
 const ModalDelete = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);

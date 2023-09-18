@@ -6,10 +6,10 @@ import {
   setIsArchive,
   setMessage,
   setSuccess,
-  setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { queryData } from "../../../../helpers/queryData";
+  setValidate
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 
 const ModalArchive = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -18,13 +18,13 @@ const ModalArchive = ({ item, setItem }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/controllers/developer/client/account/active.php?clientAccountId=${item.client_account_aid}`,
+        `/v1/controllers/developer/settings/bank-details/active.php?bankDetailsId=${item.bank_details_aid}`,
         "put",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: `client-account` });
+      queryClient.invalidateQueries({ queryKey: `settings-bank-details` });
       //   dispatch(setIsRestore(false));
 
       if (data.success) {
@@ -73,7 +73,7 @@ const ModalArchive = ({ item, setItem }) => {
               Are you sure you want to archive this?
             </h3>
             <p className="font-bold text-base">
-              "{item.client_account_contact_name }"
+              "{item.bank_details_bank_name}"
             </p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">

@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Form, Formik } from "formik";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import * as Yup from "yup";
@@ -8,15 +9,14 @@ import {
   setMessage,
   setSuccess,
   setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { InputText, InputTextArea } from "../../../../helpers/FormInputs";
-import { handleEscape } from "../../../../helpers/functions-general";
-import { queryData } from "../../../../helpers/queryData";
-import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
-import { Form, Formik } from "formik";
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { InputText } from "../../../../../helpers/FormInputs";
+import { handleEscape } from "../../../../../helpers/functions-general";
+import { queryData } from "../../../../../helpers/queryData";
+import ButtonSpinner from "../../../../../partials/spinners/ButtonSpinner";
 
-const ModalAddAccount = ({ itemEdit }) => {
+const ModalAddSystemAccount = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
 
@@ -24,14 +24,14 @@ const ModalAddAccount = ({ itemEdit }) => {
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/v1/controllers/developer/client/account/client-account.php?clientAccountId=${itemEdit.client_account_aid}` //update
-          : "/v1/controllers/developer/client/account/client-account.php", //add
+          ? `/v1/controllers/developer/settings/system-account/system-account.php?systemAccountId=${itemEdit.system_account_aid}` //update
+          : "/v1/controllers/developer/settings/system-account/system-account.php", //add
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["client-account"] });
+      queryClient.invalidateQueries({ queryKey: ["settings-system-account"] });
       if (data.success) {
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
@@ -47,27 +47,17 @@ const ModalAddAccount = ({ itemEdit }) => {
   });
 
   const initVal = {
-    client_account_contact_name: itemEdit
-      ? itemEdit.client_account_contact_name
-      : "",
-    client_account_contact_email: itemEdit
-      ? itemEdit.client_account_contact_email
-      : "",
-    client_account_number: itemEdit ? itemEdit.client_account_number : "",
-    client_account_company_name: itemEdit
-      ? itemEdit.client_account_company_name
-      : "",
-    client_account_role: itemEdit ? itemEdit.client_account_role : "",
+    system_account_name: itemEdit ? itemEdit.system_account_name : "",
+    system_account_email: itemEdit ? itemEdit.system_account_email : "",
+    system_account_role: itemEdit ? itemEdit.system_account_role : "",
 
-    client_account_number_old: itemEdit ? itemEdit.client_account_number : "",
+    system_account_name_old: itemEdit ? itemEdit.system_account_name : "",
   };
 
   const yupSchema = Yup.object({
-    client_account_contact_name: Yup.string().required("Required"),
-    client_account_contact_email: Yup.string().required("Required"),
-    client_account_number: Yup.string().required("Required"),
-    client_account_company_name: Yup.string().required("Required"),
-    client_account_role: Yup.string().required("Required"),
+    system_account_name: Yup.string().required("Required"),
+    system_account_email: Yup.string().required("Required"),
+    system_account_role: Yup.string().required("Required"),
   });
 
   const handleClose = () => {
@@ -84,14 +74,13 @@ const ModalAddAccount = ({ itemEdit }) => {
         >
           <div className="modal__header relative p-4">
             <h3 className="font-bold">
-              {" "}
-              {itemEdit ? "Update" : "Add"} Client List
+              {itemEdit ? "Update" : "Add"} System Account
             </h3>
             <button className="absolute top-4 right-4" onClick={handleClose}>
               <FaTimes className="text-gray-700 text-sm" />
             </button>
           </div>
-          <div className="overflow-auto max-h-[50vh] custom__scroll">
+          <div className="overflow-auto max-h-[50vh]">
             <Formik
               initialValues={initVal}
               validationSchema={yupSchema}
@@ -107,33 +96,17 @@ const ModalAddAccount = ({ itemEdit }) => {
                     <div className="modal__body p-4">
                       <div className="form__wrap">
                         <InputText
-                          label="Contact Name"
+                          label="Name"
                           type="text"
-                          name="client_account_contact_name"
+                          name="system_account_name"
                           disabled={mutation.isLoading}
                         />
                       </div>
                       <div className="form__wrap">
                         <InputText
-                          label="Contact Email	"
+                          label="Email"
                           type="text"
-                          name="client_account_contact_email"
-                          disabled={mutation.isLoading}
-                        />
-                      </div>
-                      <div className="form__wrap">
-                        <InputText
-                          label="Company"
-                          type="text"
-                          name="client_account_number"
-                          disabled={mutation.isLoading}
-                        />
-                      </div>
-                      <div className="form__wrap">
-                        <InputText
-                          label="Account Number"
-                          type="text"
-                          name="client_account_company_name"
+                          name="system_account_email"
                           disabled={mutation.isLoading}
                         />
                       </div>
@@ -141,7 +114,7 @@ const ModalAddAccount = ({ itemEdit }) => {
                         <InputText
                           label="Role"
                           type="text"
-                          name="client_account_role"
+                          name="system_account_role"
                           disabled={mutation.isLoading}
                         />
                       </div>
@@ -180,4 +153,4 @@ const ModalAddAccount = ({ itemEdit }) => {
   );
 };
 
-export default ModalAddAccount;
+export default ModalAddSystemAccount;

@@ -19,9 +19,9 @@ import Toast from "../../../../partials/Toast.jsx";
 import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
 import IconNoData from "../../../../svg/IconNoData.jsx";
 import IconServerError from "../../../../svg/IconServerError.jsx";
-import ModalArchive from "./ModalArchive.jsx";
-import ModalDelete from "./ModalDelete.jsx";
-import ModalRestore from "./ModalRestore.jsx";
+import ModalArchive from "./modals/ModalArchive.jsx";
+import ModalDelete from "./modals/ModalDelete.jsx";
+import ModalRestore from "./modals/ModalRestore.jsx";
 import TableLoading from "../../../../partials/TableLoading.jsx";
 
 const BankDetailsCard = ({ setItemEdit }) => {

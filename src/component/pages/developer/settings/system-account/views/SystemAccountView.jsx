@@ -1,5 +1,8 @@
 import React from "react";
-import { setIsSettingsOpen } from "../../../../../../store/StoreAction";
+import {
+  setIsAdd,
+  setIsSettingsOpen,
+} from "../../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import useQueryData from "../../../../../custom-hooks/useQueryData";
 import { getUrlParam } from "../../../../../helpers/functions-general";
@@ -8,9 +11,16 @@ import Header from "../../../../../partials/Header";
 import Navigation from "../../../../../partials/Navigation";
 import Pills from "../../../../../partials/Pills";
 import ServerError from "../../../../../partials/ServerError";
+import TableSpinner from "../../../../../partials/spinners/TableSpinner";
+import TableLoading from "../../../../../partials/TableLoading";
+import EditSvg from "../../../../../svg/EditSvg";
+import ModalAddSystemAccount from "../modals/ModalAddSystemAccount";
+import ModalError from "../../../../../partials/Modals/ModalError";
+import Toast from "../../../../../partials/Toast";
 
 const SystemAccountView = () => {
   const { store, dispatch } = React.useContext(StoreContext);
+  const [itemEdit, setItemEdit] = React.useState(null);
   const systemAccountId = getUrlParam().get("systemAccountId");
 
   const {
@@ -23,6 +33,11 @@ const SystemAccountView = () => {
     "get",
     "system-account"
   );
+
+  const handleEdit = (item) => {
+    setItemEdit(item);
+    dispatch(setIsAdd(true));
+  };
 
   React.useEffect(() => {
     dispatch(setIsSettingsOpen(true));
@@ -43,10 +58,31 @@ const SystemAccountView = () => {
           </div>
 
           <div className="bg-white pt-8 pb-6 mt-8 px-4 lg:mt-4 overflow-x-auto">
-            {error && <ServerError />}
-            {systemAccountView?.count > 0 && !error && (
+            {isFetching && !isLoading && <TableSpinner />}
+            {(isLoading || systemAccountView?.data.length === 0) && (
               <>
-                <ul>
+                {isLoading ? (
+                  <TableLoading cols={2} count={20} />
+                ) : (
+                  <div className="text-center text-base text-gray-400 font-bold">
+                    <h1>Page Not Found</h1>
+                  </div>
+                )}
+              </>
+            )}
+            {error && <ServerError />}
+            {systemAccountView?.data.map((item, key) => {
+              return (
+                <ul key={key}>
+                  <li className="flex justify-end">
+                    <button
+                      className="tooltip"
+                      data-tooltip="Edit"
+                      onClick={() => handleEdit(item)}
+                    >
+                      <EditSvg />
+                    </button>
+                  </li>
                   <li className="grid grid-cols-2">
                     <span>Account Name : </span>
                     <p>{systemAccountView.data[0].system_account_name}</p>
@@ -71,11 +107,14 @@ const SystemAccountView = () => {
                     </p>
                   </li>
                 </ul>
-              </>
-            )}
+              );
+            })}
           </div>
         </main>
       </section>
+      {store.isAdd && <ModalAddSystemAccount itemEdit={itemEdit} />}
+      {store.success && <Toast />}
+      {store.error && <ModalError />}
     </>
   );
 };

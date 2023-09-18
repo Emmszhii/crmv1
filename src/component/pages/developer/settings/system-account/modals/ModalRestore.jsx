@@ -7,9 +7,9 @@ import {
   setMessage,
   setSuccess,
   setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { queryData } from "../../../../helpers/queryData";
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 
 const ModalRestore = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -18,13 +18,13 @@ const ModalRestore = ({ item, setItem }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/controllers/developer/client/account/active.php?clientAccountId=${item.client_account_aid}`,
+        `/v1/controllers/developer/settings/system-account/active.php?systemAccountId=${item.system_account_aid}`,
         "put",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: `client-account` });
+      queryClient.invalidateQueries({ queryKey: `settings-system-account` });
       if (data.success) {
         dispatch(setIsRestore(false));
         dispatch(setSuccess(true));
@@ -71,9 +71,7 @@ const ModalRestore = ({ item, setItem }) => {
             <h3 className="text-sm pb-4">
               Are you sure you want to restore this?
             </h3>
-            <p className="font-bold text-base">
-              "{item.client_account_contact_name}"
-            </p>
+            <p className="font-bold text-base">"{item.system_account_name}"</p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button

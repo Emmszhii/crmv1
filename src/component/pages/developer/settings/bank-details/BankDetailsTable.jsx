@@ -18,9 +18,9 @@ import TableLoading from "../../../../partials/TableLoading.jsx";
 import Toast from "../../../../partials/Toast.jsx";
 import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
 import EditSvg from "../../../../svg/EditSvg.jsx";
-import ModalArchive from "./ModalArchive.jsx";
-import ModalDelete from "./ModalDelete.jsx";
-import ModalRestore from "./ModalRestore.jsx";
+import ModalArchive from "./modals/ModalArchive.jsx";
+import ModalDelete from "./modals/ModalDelete.jsx";
+import ModalRestore from "./modals/ModalRestore.jsx";
 
 const BankDetailsTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);

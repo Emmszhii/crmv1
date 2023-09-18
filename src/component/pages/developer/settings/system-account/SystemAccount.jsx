@@ -11,7 +11,7 @@ import ModalError from "../../../../partials/Modals/ModalError";
 import Navigation from "../../../../partials/Navigation";
 import Toast from "../../../../partials/Toast";
 import PlusSvg from "../../../../svg/PlusSvg";
-import ModalAddSystemAccount from "./ModalAddSystemAccount";
+import ModalAddSystemAccount from "./modals/ModalAddSystemAccount";
 import SystemAccountTable from "./SystemAccountTable";
 
 const SystemAccount = () => {

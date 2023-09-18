@@ -3,18 +3,18 @@ import { Form, Formik } from "formik";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import * as Yup from "yup";
+import { InputText, InputTextArea } from "../../../../../helpers/FormInputs";
+import { handleEscape } from "../../../../../helpers/functions-general";
+import ButtonSpinner from "../../../../../partials/spinners/ButtonSpinner";
+import { queryData } from "../../../../../helpers/queryData";
+import { StoreContext } from "../../../../../../store/StoreContext";
 import {
   setError,
   setIsAdd,
   setMessage,
   setSuccess,
   setValidate,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import { InputText, InputTextArea } from "../../../../helpers/FormInputs";
-import { handleEscape } from "../../../../helpers/functions-general";
-import { queryData } from "../../../../helpers/queryData";
-import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
+} from "../../../../../../store/StoreAction";
 
 const ModalAddRoles = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);

@@ -4,11 +4,11 @@ import { StoreProvider } from "./store/StoreContext";
 import Roles from "./component/pages/developer/settings/roles/Roles";
 import BankDetails from "./component/pages/developer/settings/bank-details/BankDetails";
 import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
-import SystemAccountView from "./component/pages/developer/settings/system-account/view/SystemAccountView";
+import SystemAccountView from "./component/pages/developer/settings/system-account/views/SystemAccountView";
 import ClientList from "./component/pages/developer/client/list/ClientList";
 import Account from "./component/pages/developer/client/account/Account";
-import AccountView from "./component/pages/developer/client/account/view/AccountView";
-import ClientListView from "./component/pages/developer/client/list/view/ClientListView";
+import AccountView from "./component/pages/developer/client/account/views/AccountView";
+import ClientListView from "./component/pages/developer/client/list/views/ClientListView";
 
 function App() {
   // Create a client

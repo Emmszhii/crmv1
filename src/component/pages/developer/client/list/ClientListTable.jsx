@@ -22,10 +22,9 @@ import ServerError from "../../../../partials/ServerError.jsx";
 import TableLoading from "../../../../partials/TableLoading.jsx";
 import Toast from "../../../../partials/Toast.jsx";
 import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
-import EditSvg from "../../../../svg/EditSvg.jsx";
-import ModalArchive from "./modal/ModalArchive.jsx";
-import ModalDelete from "./modal/ModalDelete.jsx";
-import ModalRestore from "./modal/ModalRestore.jsx";
+import ModalArchive from "./modals/ModalArchive.jsx";
+import ModalDelete from "./modals/ModalDelete.jsx";
+import ModalRestore from "./modals/ModalRestore.jsx";
 
 const ClientListTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);

@@ -11,7 +11,7 @@ import ModalError from "../../../../partials/Modals/ModalError";
 import Navigation from "../../../../partials/Navigation";
 import Toast from "../../../../partials/Toast";
 import PlusSvg from "../../../../svg/PlusSvg";
-import ModalAddRoles from "./ModalAddRoles";
+import ModalAddRoles from "./modals/ModalAddRoles";
 import RolesTable from "./RolesTable";
 
 const Roles = () => {

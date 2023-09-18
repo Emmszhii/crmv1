@@ -1,6 +1,6 @@
 import React from "react";
-import { MdDelete, MdRestorePage } from "react-icons/md";
 import { BiSolidArchiveOut } from "react-icons/bi";
+import { MdDelete, MdRestorePage } from "react-icons/md";
 import {
   setIsAdd,
   setIsArchive,
@@ -9,16 +9,14 @@ import {
 } from "../../../../../store/StoreAction.jsx";
 import { StoreContext } from "../../../../../store/StoreContext.jsx";
 import useQueryData from "../../../../custom-hooks/useQueryData.jsx";
-import ModalSuccess from "../../../../partials/Modals/ModalSuccess.jsx";
-import TableLoading from "../../../../partials/TableLoading.jsx";
-import TableSpinner from "../../../../partials/spinners/TableSpinner.jsx";
-import EditSvg from "../../../../svg/EditSvg.jsx";
-import ModalDelete from "./ModalDelete.jsx";
-import ModalArchive from "./ModalArchive.jsx";
-import ModalRestore from "./ModalRestore.jsx";
 import Pills from "../../../../partials/Pills.jsx";
+import TableLoading from "../../../../partials/TableLoading.jsx";
 import Toast from "../../../../partials/Toast.jsx";
 import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
+import EditSvg from "../../../../svg/EditSvg.jsx";
+import ModalDelete from "./modals/ModalDelete.jsx";
+import ModalArchive from "./modals/ModalArchive.jsx";
+import ModalRestore from "./modals/ModalRestore.jsx";
 
 const RolesTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
