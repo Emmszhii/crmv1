@@ -59,56 +59,62 @@ const SystemAccountView = () => {
 
           <div className="bg-white pt-8 pb-6 mt-8 px-4 lg:mt-4 overflow-x-auto">
             {isFetching && !isLoading && <TableSpinner />}
-            {(isLoading || systemAccountView?.data.length === 0) && (
+            {systemAccountView?.error ? (
+              <h1 className="text-center">Page not found</h1>
+            ) : (
               <>
-                {isLoading ? (
-                  <TableLoading cols={2} count={20} />
-                ) : (
-                  <div className="text-center text-base text-gray-400 font-bold">
-                    <h1>Page Not Found</h1>
-                  </div>
+                {(isLoading || systemAccountView?.data.length === 0) && (
+                  <>
+                    {isLoading ? (
+                      <TableLoading cols={2} count={20} />
+                    ) : (
+                      <div className="text-center text-base text-gray-400 font-bold">
+                        <h1>Page Not Found</h1>
+                      </div>
+                    )}
+                  </>
                 )}
+                {error && <ServerError />}
+                {systemAccountView?.data.map((item, key) => {
+                  return (
+                    <ul key={key}>
+                      <li className="flex justify-end">
+                        <button
+                          className="tooltip"
+                          data-tooltip="Edit"
+                          onClick={() => handleEdit(item)}
+                        >
+                          <EditSvg />
+                        </button>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Account Name : </span>
+                        <p>{systemAccountView.data[0].system_account_name}</p>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Account Email : </span>
+                        <p>{systemAccountView.data[0].system_account_email}</p>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Account Role : </span>
+                        <p>{systemAccountView.data[0].system_account_role}</p>
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Account active : </span>
+                        <p>
+                          {systemAccountView.data[0]
+                            .system_account_is_active === 1 ? (
+                            <Pills label="Active" />
+                          ) : (
+                            <Pills label="Inactive" bgc="bg-gray-300" />
+                          )}
+                        </p>
+                      </li>
+                    </ul>
+                  );
+                })}
               </>
             )}
-            {error && <ServerError />}
-            {systemAccountView?.data.map((item, key) => {
-              return (
-                <ul key={key}>
-                  <li className="flex justify-end">
-                    <button
-                      className="tooltip"
-                      data-tooltip="Edit"
-                      onClick={() => handleEdit(item)}
-                    >
-                      <EditSvg />
-                    </button>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Account Name : </span>
-                    <p>{systemAccountView.data[0].system_account_name}</p>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Account Email : </span>
-                    <p>{systemAccountView.data[0].system_account_email}</p>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Account Role : </span>
-                    <p>{systemAccountView.data[0].system_account_role}</p>
-                  </li>
-                  <li className="grid grid-cols-2">
-                    <span>Account active : </span>
-                    <p>
-                      {systemAccountView.data[0].system_account_is_active ===
-                      1 ? (
-                        <Pills label="Active" />
-                      ) : (
-                        <Pills label="Inactive" bgc="bg-gray-300" />
-                      )}
-                    </p>
-                  </li>
-                </ul>
-              );
-            })}
           </div>
         </main>
       </section>
