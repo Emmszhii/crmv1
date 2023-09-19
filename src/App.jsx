@@ -1,14 +1,19 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { StoreProvider } from "./store/StoreContext";
-import Roles from "./component/pages/developer/settings/roles/Roles";
-import BankDetails from "./component/pages/developer/settings/bank-details/BankDetails";
-import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
-import SystemAccountView from "./component/pages/developer/settings/system-account/views/SystemAccountView";
-import ClientList from "./component/pages/developer/client/list/ClientList";
 import Account from "./component/pages/developer/client/account/Account";
 import AccountView from "./component/pages/developer/client/account/views/AccountView";
+import ClientList from "./component/pages/developer/client/list/ClientList";
 import ClientListView from "./component/pages/developer/client/list/views/ClientListView";
+import Info from "./component/pages/developer/info/Info";
+import InfoEngagement from "./component/pages/developer/info/engagement/InfoEngagement";
+import InfoRoles from "./component/pages/developer/info/roles/InfoRoles";
+import InfoListView from "./component/pages/developer/info/views/InfoListView";
+import BankDetails from "./component/pages/developer/settings/bank-details/BankDetails";
+import Roles from "./component/pages/developer/settings/roles/Roles";
+import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
+import SystemAccountView from "./component/pages/developer/settings/system-account/views/SystemAccountView";
+import { StoreProvider } from "./store/StoreContext";
+import InfoView from "./component/pages/developer/info/views/InfoView";
 
 function App() {
   // Create a client
@@ -38,6 +43,16 @@ function App() {
               <Route
                 path={"/settings/system-account/view"}
                 element={<SystemAccountView />}
+              />
+              {/* MY INFO */}
+              <Route path={"/info"} element={<Info />} />
+              <Route path={"/info/list"} element={<InfoListView />} />
+              <Route path={"/info/view"} element={<InfoView />} />
+              {/* <Route path={"/info/view"} element={<InfoRolesView />} /> */}
+              <Route path={"/info/engagement"} element={<InfoEngagement />} />
+              <Route
+                path={"/info/engagement/view"}
+                element={<InfoEngagement />}
               />
             </Routes>
           </Router>

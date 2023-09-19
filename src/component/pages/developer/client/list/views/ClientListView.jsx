@@ -62,9 +62,7 @@ const ClientListView = () => {
           <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 overflow-x-auto custom__scroll relative">
             {isFetching && !isLoading && <TableSpinner />}
             {clientListView?.error ? (
-              <div className="text-center text-base text-gray-400 font-bold">
-                <h1>Page Not Found</h1>
-              </div>
+              <ServerError />
             ) : (
               <>
                 {(isLoading || clientListView?.data.length === 0) && (

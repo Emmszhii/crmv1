@@ -1,16 +1,19 @@
 import React from "react";
 import { BsFillGearFill } from "react-icons/bs";
+import { BiSolidUser } from "react-icons/bi";
 import { PiCaretRight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../store/StoreContext";
 import { devNavUrl } from "../helpers/functions-general";
 import {
   setIsClientOpen,
+  setIsInfoOpen,
   setIsMenuOpen,
   setIsSearch,
   setIsSettingsOpen,
   setStartIndex,
 } from "../../store/StoreAction";
+import { AiFillInfoCircle } from "react-icons/ai";
 
 const Navigation = ({ menu, submenu = "null" }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -23,10 +26,18 @@ const Navigation = ({ menu, submenu = "null" }) => {
   const handleShowSettings = () => {
     dispatch(setIsClientOpen(false));
     dispatch(setIsSettingsOpen(true));
+    dispatch(setIsInfoOpen(false));
   };
   const handleShowClient = () => {
     dispatch(setIsSettingsOpen(false));
     dispatch(setIsClientOpen(true));
+    dispatch(setIsInfoOpen(false));
+  };
+
+  const handleMyInfo = () => {
+    dispatch(setIsSettingsOpen(false));
+    dispatch(setIsClientOpen(false));
+    dispatch(setIsInfoOpen(true));
   };
 
   return (
@@ -39,7 +50,7 @@ const Navigation = ({ menu, submenu = "null" }) => {
               onClick={handleShowClient}
             >
               <div className="flex items-center gap-3 text-[17px]">
-                <BsFillGearFill /> Client
+                <BiSolidUser /> Client
               </div>
               <PiCaretRight
                 className={`${store.isClientOpen ? "rotate-90" : ""}`}
@@ -115,6 +126,18 @@ const Navigation = ({ menu, submenu = "null" }) => {
                 </li>
               </ul>
             </div>
+          </li>
+          <li className={`nav__link ${store.isInfoOpen ? "active" : ""}`}>
+            <Link to={`/info`}>
+              <button
+                className="flex items-center gap-3 w-full px-2 py-1"
+                onClick={handleMyInfo}
+              >
+                <div className="flex items-center gap-3 text-[17px]">
+                  <AiFillInfoCircle /> Info
+                </div>
+              </button>
+            </Link>
           </li>
         </ul>
       </div>

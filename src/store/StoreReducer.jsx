@@ -167,6 +167,11 @@ export const StoreReducer = (state, action) => {
         ...state,
         isMenuOpen: action.payload,
       };
+    case "IS_INFO_OPEN":
+      return {
+        ...state,
+        isInfoOpen: action.payload,
+      };
     case "IS_ARCHIVE":
       return {
         ...state,

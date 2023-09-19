@@ -160,6 +160,21 @@
   .sub__link.active {
     @apply text-red-800;
   }
+  .sub__list li {
+    @apply py-2;
+  }
+  .sub__list li:hover button .sub__list__arrow {
+    @apply border-primary text-white bg-primary;
+  }
+  .sub__list li:not(:first-child) {
+    @apply mt-1 border-t-2;
+  }
+  .sub__list li button {
+    @apply w-full flex items-center justify-between;
+  }
+  .sub__list li button .sub__list__arrow {
+    @apply px-3 py-3 border-2 rounded-sm transition-all;
+  }
   .breadcrumbs {
     @apply flex gap-5 text-sm;
   }

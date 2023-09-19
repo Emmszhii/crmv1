@@ -1,37 +1,38 @@
 import React from "react";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { getUrlParam } from "../../../../../helpers/functions-general";
+import useQueryData from "../../../../../custom-hooks/useQueryData";
 import {
   setIsAdd,
+  setIsInfoOpen,
   setIsSettingsOpen,
 } from "../../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../../store/StoreContext";
-import useQueryData from "../../../../../custom-hooks/useQueryData";
-import { getUrlParam } from "../../../../../helpers/functions-general";
+import Toast from "../../../../../partials/Toast";
+import ModalError from "../../../../../partials/Modals/ModalError";
+import ModalAddInfoRoles from "../modals/ModalAddInfoRoles";
+import Pills from "../../../../../partials/Pills";
+import TableLoading from "../../../../../partials/TableLoading";
+import ServerError from "../../../../../partials/ServerError";
+import TableSpinner from "../../../../../partials/spinners/TableSpinner";
 import Breadcrumbs from "../../../../../partials/Breadcrumbs";
 import Header from "../../../../../partials/Header";
 import Navigation from "../../../../../partials/Navigation";
-import Pills from "../../../../../partials/Pills";
-import ServerError from "../../../../../partials/ServerError";
-import TableSpinner from "../../../../../partials/spinners/TableSpinner";
-import TableLoading from "../../../../../partials/TableLoading";
 import EditSvg from "../../../../../svg/EditSvg";
-import ModalAddSystemAccount from "../modals/ModalAddSystemAccount";
-import ModalError from "../../../../../partials/Modals/ModalError";
-import Toast from "../../../../../partials/Toast";
 
-const SystemAccountView = () => {
+const InfoRolesView = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
-  const systemAccountId = getUrlParam().get("systemAccountId");
+  const infoId = getUrlParam().get("infoId");
 
   const {
     isLoading,
     isFetching,
     error,
-    data: systemAccountView,
+    data: infoRoles,
   } = useQueryData(
-    `/v1/controllers/developer/settings/system-account/system-account.php?systemAccountId=${systemAccountId}`,
+    `/v1/controllers/developer/info/roles/roles.php?infoRolesId=${infoId}`,
     "get",
-    "system-account"
+    "info-roles"
   );
 
   const handleEdit = (item) => {
@@ -40,32 +41,32 @@ const SystemAccountView = () => {
   };
 
   React.useEffect(() => {
-    dispatch(setIsSettingsOpen(true));
+    dispatch(setIsInfoOpen(true));
   }, []);
-
   return (
     <>
       <Header />
       <section className="main__grid">
         <aside className={`${store.isMenuOpen ? "active" : ""}`}>
-          <Navigation menu="settings" submenu="settingsSystemAccount" />
+          <Navigation menu="info" />
         </aside>
         <main className="px-6 md:px-10">
           {store.isMenuOpen ? <div className="overlay"></div> : ""}
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
-            <h1 className="text-4xl font-bold">System Account View</h1>
-            <Breadcrumbs />
+            <h1 className="text-4xl font-bold">Info Roles View</h1>
+            <Breadcrumbs param={location.search} />
           </div>
 
           <div className="bg-white pt-8 pb-6 mt-8 px-4 lg:mt-4 overflow-x-auto">
             {isFetching && !isLoading && <TableSpinner />}
-            {systemAccountView?.error ? (
+            {infoRoles?.error ? (
               <div className="">
-                <ServerError className="w-1" />
+                <ServerError />
               </div>
             ) : (
               <>
-                {(isLoading || systemAccountView?.data.length === 0) && (
+                {console.log(infoRoles?.data)}
+                {(isLoading || infoRoles?.data.length === 0) && (
                   <>
                     {isLoading ? (
                       <TableLoading cols={2} count={20} />
@@ -77,7 +78,7 @@ const SystemAccountView = () => {
                   </>
                 )}
                 {error && <ServerError />}
-                {systemAccountView?.data.map((item, key) => {
+                {infoRoles?.data.map((item, key) => {
                   return (
                     <ul key={key}>
                       <li className="flex justify-end">
@@ -90,22 +91,21 @@ const SystemAccountView = () => {
                         </button>
                       </li>
                       <li className="grid grid-cols-2">
-                        <span>Account Name : </span>
-                        <p>{systemAccountView.data[0].system_account_name}</p>
+                        <span>Name : </span>
+                        <p>{item.info_roles_name}</p>
                       </li>
                       <li className="grid grid-cols-2">
-                        <span>Account Email : </span>
-                        <p>{systemAccountView.data[0].system_account_email}</p>
+                        <span>Description : </span>
+                        <p>{item.info_roles_description}</p>
                       </li>
                       <li className="grid grid-cols-2">
-                        <span>Account Role : </span>
-                        <p>{systemAccountView.data[0].system_account_role}</p>
+                        <span>Info ID : </span>
+                        <p>{item.info_id}</p>
                       </li>
                       <li className="grid grid-cols-2">
-                        <span>Account active : </span>
+                        <span>Status : </span>
                         <p>
-                          {systemAccountView.data[0]
-                            .system_account_is_active === 1 ? (
+                          {item.info_roles_is_active === 1 ? (
                             <Pills label="Active" />
                           ) : (
                             <Pills label="Inactive" bgc="bg-gray-300" />
@@ -120,11 +120,11 @@ const SystemAccountView = () => {
           </div>
         </main>
       </section>
-      {store.isAdd && <ModalAddSystemAccount itemEdit={itemEdit} />}
+      {store.isAdd && <ModalAddInfoRoles itemEdit={itemEdit} />}
       {store.error && <ModalError />}
       {store.success && <Toast />}
     </>
   );
 };
 
-export default SystemAccountView;
+export default InfoRolesView;

@@ -1,28 +1,20 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
-import { BiSolidArchiveOut } from "react-icons/bi";
-import { MdDelete, MdRestorePage } from "react-icons/md";
+import { StoreContext } from "../../../../../store/StoreContext";
 import { useInView } from "react-intersection-observer";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { queryDataInfinite } from "../../../../helpers/queryDataInfinite";
 import {
   setIsAdd,
   setIsArchive,
   setIsConfirm,
   setIsRestore,
-} from "../../../../../store/StoreAction.jsx";
-import { StoreContext } from "../../../../../store/StoreContext.jsx";
-import { queryDataInfinite } from "../../../../helpers/queryDataInfinite.jsx";
-import Loadmore from "../../../../partials/Loadmore.jsx";
-import Pills from "../../../../partials/Pills.jsx";
-import Searchbar from "../../../../partials/Searchbar.jsx";
-import TableLoading from "../../../../partials/TableLoading.jsx";
-import Toast from "../../../../partials/Toast.jsx";
-import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner.jsx";
-import EditSvg from "../../../../svg/EditSvg.jsx";
-import ModalArchive from "./modals/ModalArchive.jsx";
-import ModalDelete from "./modals/ModalDelete.jsx";
-import ModalRestore from "./modals/ModalRestore.jsx";
+} from "../../../../../store/StoreAction";
+import Searchbar from "../../../../partials/Searchbar";
+import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner";
+import TableLoading from "../../../../partials/TableLoading";
+import ServerError from "../../../../partials/ServerError";
 
-const BankDetailsTable = ({ setItemEdit }) => {
+const InfoEngagementTable = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [item, setItem] = React.useState(null);
   // SEARCH and LOADMORE
@@ -43,11 +35,11 @@ const BankDetailsTable = ({ setItemEdit }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["settings-bank-details", store.isSearch],
+    queryKey: ["info-engagement", store.isSearch],
     queryFn: async ({ pageParam = 1 }) =>
       await queryDataInfinite(
-        `/v1/controllers/developer/settings/bank-details/search.php`, // search endpoint
-        `/v1/controllers/developer/settings/bank-details/page.php?start=${pageParam}`, // list endpoint
+        `/v1/controllers/developer/info/engagement/search.php`, // search endpoint
+        `/v1/controllers/developer/info/engagement/page.php?start=${pageParam}`, // list endpoint
         store.isSearch, // search boolean
         "post",
         { search: search.current.value }
@@ -88,9 +80,7 @@ const BankDetailsTable = ({ setItemEdit }) => {
   const handleArchive = (item) => {
     dispatch(setIsArchive(!store.isArchive));
     setItem(item);
-    console.log(store.isArhive);
   };
-
   return (
     <>
       <Searchbar
@@ -107,11 +97,8 @@ const BankDetailsTable = ({ setItemEdit }) => {
             <tr>
               <th>#</th>
               <th>Status</th>
-              <th>Bank Name</th>
-              <th>Account Name</th>
-              <th>Account Number</th>
-              <th>Location</th>
-              <th>Action</th>
+              <th>Name</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
@@ -130,7 +117,7 @@ const BankDetailsTable = ({ setItemEdit }) => {
             {error && (
               <tr className="text-center ">
                 <td colSpan="100%" className="p-10">
-                  <h1>Server Error</h1>
+                  <ServerError />
                 </td>
               </tr>
             )}
@@ -138,14 +125,14 @@ const BankDetailsTable = ({ setItemEdit }) => {
               return (
                 <React.Fragment key={key}>
                   {page.data.map((item, key) => {
-                    active += item.bank_details_is_active;
-                    inactive += !item.bank_details_is_active;
+                    active += item.info_engagement_is_active;
+                    inactive += !item.info_engagement_is_active;
                     return (
                       <React.Fragment key={key}>
                         <tr key={key}>
                           <td>{counter++}</td>
                           <td>
-                            {item.bank_details_is_active === 1 ? (
+                            {item.info_engagement_is_active === 1 ? (
                               <>
                                 <Pills label="Active" bgc="bg-green-600" />
                               </>
@@ -155,12 +142,11 @@ const BankDetailsTable = ({ setItemEdit }) => {
                               </>
                             )}
                           </td>
-                          <td>{item.bank_details_bank_name}</td>
-                          <td>{item.bank_details_account_name}</td>
-                          <td>{item.bank_details_account_number}</td>
-                          <td>{item.bank_details_location}</td>
+                          <td>{item.info_engagement_name}</td>
+                          <td>{item.info_engagement_description}</td>
+
                           <td className="table__action">
-                            {item.bank_details_is_active === 1 ? (
+                            {item.info_engagement_is_active === 1 ? (
                               <>
                                 <button
                                   className="tooltip"
@@ -226,4 +212,4 @@ const BankDetailsTable = ({ setItemEdit }) => {
   );
 };
 
-export default BankDetailsTable;
+export default InfoEngagementTable;

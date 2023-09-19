@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { StoreContext } from "../../store/StoreContext";
 import { devNavUrl } from "../helpers/functions-general";
+import { setIsSearch, setStartIndex } from "../../store/StoreAction";
+import { array } from "yup";
 
 const Breadcrumbs = ({ param = "" }) => {
   const { dispatch } = React.useContext(StoreContext);
@@ -20,7 +22,7 @@ const Breadcrumbs = ({ param = "" }) => {
   return (
     <>
       <ul className="breadcrumbs">
-        {crumbs.map((link, key) => {
+        {crumbs.map((link, key, arr) => {
           currentLink += `/${link.replace(" ", "-")}`;
           return (
             <li key={key}>
@@ -33,12 +35,6 @@ const Breadcrumbs = ({ param = "" }) => {
             </li>
           );
         })}
-        {/* <li>
-          <Link>Settings</Link>
-        </li>
-        <li>
-          <Link>Roles</Link>
-        </li> */}
       </ul>
     </>
   );

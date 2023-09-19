@@ -187,6 +187,12 @@ export const setIsSettingsOpen = (val) => {
     payload: val,
   };
 };
+export const setIsInfoOpen = (val) => {
+  return {
+    type: "IS_INFO_OPEN",
+    payload: val,
+  };
+};
 
 export const setIsMenuOpen = (val) => {
   return {

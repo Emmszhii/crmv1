@@ -1,12 +1,12 @@
 import React from "react";
 
-const IconServerError = () => {
+const IconServerError = ({ width, height }) => {
   return (
     <>
       <div>
         <svg
-          width="150"
-          height="171"
+          width={width}
+          height={height}
           viewBox="0 0 150 171"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

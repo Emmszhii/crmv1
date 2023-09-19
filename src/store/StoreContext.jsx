@@ -28,6 +28,7 @@ const initVal = {
   isRefresh: false,
   isToolsOpen: false,
   isSettingsOpen: false,
+  isInfoOpen: false,
   isClientOpen: false,
   isMenuOpen: false,
 };
