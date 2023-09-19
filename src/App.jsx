@@ -6,14 +6,14 @@ import ClientList from "./component/pages/developer/client/list/ClientList";
 import ClientListView from "./component/pages/developer/client/list/views/ClientListView";
 import Info from "./component/pages/developer/info/Info";
 import InfoEngagement from "./component/pages/developer/info/engagement/InfoEngagement";
-import InfoRoles from "./component/pages/developer/info/roles/InfoRoles";
-import InfoListView from "./component/pages/developer/info/views/InfoListView";
+import InfoMenuView from "./component/pages/developer/info/views/InfoMenuView";
+import InfoView from "./component/pages/developer/info/views/InfoView";
 import BankDetails from "./component/pages/developer/settings/bank-details/BankDetails";
 import Roles from "./component/pages/developer/settings/roles/Roles";
 import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
 import SystemAccountView from "./component/pages/developer/settings/system-account/views/SystemAccountView";
 import { StoreProvider } from "./store/StoreContext";
-import InfoView from "./component/pages/developer/info/views/InfoView";
+import InfoEngagementView from "./component/pages/developer/info/engagement/views/InfoEngagementView";
 
 function App() {
   // Create a client
@@ -46,13 +46,15 @@ function App() {
               />
               {/* MY INFO */}
               <Route path={"/info"} element={<Info />} />
-              <Route path={"/info/list"} element={<InfoListView />} />
-              <Route path={"/info/view"} element={<InfoView />} />
-              {/* <Route path={"/info/view"} element={<InfoRolesView />} /> */}
-              <Route path={"/info/engagement"} element={<InfoEngagement />} />
+              <Route path={"/info/menu"} element={<InfoMenuView />} />
+              <Route path={"/info/menu/view"} element={<InfoView />} />
               <Route
-                path={"/info/engagement/view"}
+                path={"/info/menu/engagement"}
                 element={<InfoEngagement />}
+              />
+              <Route
+                path={"/info/menu/engagement/view"}
+                element={<InfoEngagementView />}
               />
             </Routes>
           </Router>

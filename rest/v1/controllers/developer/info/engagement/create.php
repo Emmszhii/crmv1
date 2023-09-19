@@ -3,7 +3,7 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$infoRoles = new Roles($conn);
+$infoEngagement = new Engagement($conn);
 // get should not be present
 if (array_key_exists("infoRolesId", $_GET)) {
     checkEndpoint();
@@ -11,14 +11,14 @@ if (array_key_exists("infoRolesId", $_GET)) {
 // check data
 checkPayload($data);
 // get data
-$infoRoles->info_roles_name = checkIndex($data, "info_roles_name");
-$infoRoles->info_roles_description = checkIndex($data, "info_roles_description");
-$infoRoles->info_id = checkIndex($data, "info_id");
-$infoRoles->info_roles_is_active = 1;
-$infoRoles->info_roles_created_at = date("Y-m-d H:i:s");
-$infoRoles->info_roles_updated_at = date("Y-m-d H:i:s");
+$infoEngagement->info_engagement_name = checkIndex($data, "info_engagement_name");
+$infoEngagement->info_engagement_description = checkIndex($data, "info_engagement_description");
+$infoEngagement->info_engagement_info_id = checkIndex($data, "info_engagement_info_id");
+$infoEngagement->info_engagement_is_active = 1;
+$infoEngagement->info_engagement_created_at = date("Y-m-d H:i:s");
+$infoEngagement->info_engagement_updated_at = date("Y-m-d H:i:s");
 // // check name
-isNameExist($infoRoles, $infoRoles->info_roles_name);
+isNameExist($infoEngagement, $infoEngagement->info_engagement_name);
 // create
-$query = checkCreate($infoRoles);
-returnSuccess($infoRoles, "Info Roles", $query);
+$query = checkCreate($infoEngagement);
+returnSuccess($infoEngagement, "Info Engagement", $query);

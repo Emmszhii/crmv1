@@ -16,9 +16,9 @@ import TableLoading from "../../../../partials/TableLoading";
 import Toast from "../../../../partials/Toast";
 import TableSpinner from "../../../../partials/spinners/TableSpinner";
 import ModalAddInfo from "../modals/ModalAddInfo";
-import InfoSubListView from "./InfoSubListView";
+import InfoSubListView from "./InfoListMenuView";
 
-const InfoListView = () => {
+const InfoMenuView = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const infoId = getUrlParam().get("infoId");
 
@@ -47,12 +47,10 @@ const InfoListView = () => {
           <Navigation menu="myInfo" />
         </aside>
         <main className="px-6 md:px-10 overflow-y-auto custom__scroll">
-          {store.isMenuOpen ? <div className="overlay"></div> : ""}
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
             <h1 className="text-4xl font-bold">Info </h1>
             <Breadcrumbs />
           </div>
-
           <div className="bg-white pt-8 pb-6 px-4 mt-8 lg:mt-4 custom__scroll overflow-x-auto ">
             {isFetching && !isLoading && <TableSpinner />}
             {info?.error ? (
@@ -86,4 +84,4 @@ const InfoListView = () => {
   );
 };
 
-export default InfoListView;
+export default InfoMenuView;

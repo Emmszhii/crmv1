@@ -5,8 +5,6 @@ class Info
     public $info_aid;
     public $info_name;
     public $info_description;
-    public $info_roles_id;
-    public $info_engagement_id;
     public $info_is_active;
     public $info_created_at;
     public $info_updated_at;
@@ -32,15 +30,11 @@ class Info
             $sql = "insert into {$this->tblInfo} ";
             $sql .= "( info_name, ";
             $sql .= "info_description, ";
-            $sql .= "info_roles_id, ";
-            $sql .= "info_engagement_id, ";
             $sql .= "info_is_active, ";
             $sql .= "info_created_at, ";
             $sql .= "info_updated_at ) values ( ";
             $sql .= ":info_name, ";
             $sql .= ":info_description, ";
-            $sql .= ":info_roles_id, ";
-            $sql .= ":info_engagement_id, ";
             $sql .= ":info_is_active, ";
             $sql .= ":info_created_at, ";
             $sql .= ":info_updated_at ) ";
@@ -48,8 +42,6 @@ class Info
             $query->execute([
                 "info_name" => $this->info_name,
                 "info_description" => $this->info_description,
-                "info_roles_id" => $this->info_roles_id,
-                "info_engagement_id" => $this->info_engagement_id,
                 "info_is_active" => $this->info_is_active,
                 "info_created_at" => $this->info_created_at,
                 "info_updated_at" => $this->info_updated_at,
@@ -145,16 +137,12 @@ class Info
             $sql = "update {$this->tblInfo} set ";
             $sql .= "info_name = :info_name, ";
             $sql .= "info_description = :info_description, ";
-            $sql .= "info_roles_id = :info_roles_id, ";
-            $sql .= "info_engagement_id = :info_engagement_id, ";
             $sql .= "info_updated_at = :info_updated_at ";
             $sql .= "where info_aid = :info_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "info_name" => $this->info_name,
                 "info_description" => $this->info_description,
-                "info_roles_id" => $this->info_roles_id,
-                "info_engagement_id" => $this->info_engagement_id,
                 "info_updated_at" => $this->info_updated_at,
                 "info_aid" => $this->info_aid,
             ]);

@@ -110,17 +110,16 @@ const InfoTable = ({ setItemEdit }) => {
                       </td>
                       <td>{item.info_name}</td>
                       <td>{item.info_description}</td>
-
                       <td className="table__action">
-                        <Link
-                          to={`${devNavUrl}/info/list?infoId=${item.info_aid}`}
-                        >
-                          <button className="tooltip" data-tooltip="Info">
-                            <FaRegEye />
-                          </button>
-                        </Link>
                         {item.info_is_active === 1 ? (
                           <>
+                            <Link
+                              to={`${devNavUrl}/info/menu?infoId=${item.info_aid}`}
+                            >
+                              <button className="tooltip" data-tooltip="Info">
+                                <FaRegEye />
+                              </button>
+                            </Link>
                             <button
                               className="tooltip"
                               data-tooltip="Archive"

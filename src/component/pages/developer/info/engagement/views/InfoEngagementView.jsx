@@ -1,41 +1,39 @@
 import React from "react";
-import {
-  setIsAdd,
-  setIsClientOpen,
-  setIsInfoOpen,
-  setIsSettingsOpen,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import useQueryData from "../../../../custom-hooks/useQueryData";
-import { getUrlParam } from "../../../../helpers/functions-general";
-import Breadcrumbs from "../../../../partials/Breadcrumbs";
-import Header from "../../../../partials/Header";
-import ModalError from "../../../../partials/Modals/ModalError";
-import Navigation from "../../../../partials/Navigation";
-import Nodata from "../../../../partials/Nodata";
-import Pills from "../../../../partials/Pills";
-import ServerError from "../../../../partials/ServerError";
-import TableLoading from "../../../../partials/TableLoading";
-import FetchingSpinner from "../../../../partials/spinners/FetchingSpinner";
-import EditSvg from "../../../../svg/EditSvg";
-import ModalAddInfo from "../modals/ModalAddInfo";
+import { setIsAdd, setIsInfoOpen } from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import useQueryData from "../../../../../custom-hooks/useQueryData";
+import { getUrlParam } from "../../../../../helpers/functions-general";
+import Breadcrumbs from "../../../../../partials/Breadcrumbs";
+import Header from "../../../../../partials/Header";
+import ModalError from "../../../../../partials/Modals/ModalError";
+import Navigation from "../../../../../partials/Navigation";
+import Nodata from "../../../../../partials/Nodata";
+import Pills from "../../../../../partials/Pills";
+import ServerError from "../../../../../partials/ServerError";
+import TableLoading from "../../../../../partials/TableLoading";
+import FetchingSpinner from "../../../../../partials/spinners/FetchingSpinner";
+import EditSvg from "../../../../../svg/EditSvg";
+import ModalAddInfoEngagement from "../modals/ModalAddInfoEngagement";
+import Toast from "../../../../../partials/Toast";
 
-const InfoView = () => {
+const InfoEngagementView = () => {
   const { store, dispatch } = React.useContext(StoreContext);
   const [itemEdit, setItemEdit] = React.useState(null);
+  const infoEngagementId = getUrlParam().get("infoEngagementId");
   const infoId = getUrlParam().get("infoId");
   let counter = 1,
     active = 0,
     inactive = 0;
+ 
   const {
     isLoading,
     isFetching,
     error,
-    data: info,
+    data: infoEngagement,
   } = useQueryData(
-    `/v1/controllers/developer/info/info.php?infoId=${infoId}`, // endpoint
+    `/v1/controllers/developer/info/engagement/engagement.php?infoEngagementId=${infoEngagementId}`, // endpoint
     "get", // method
-    "info" // key
+    "info-engagement" // key
   );
   React.useEffect(() => {
     dispatch(setIsInfoOpen(true));
@@ -55,17 +53,17 @@ const InfoView = () => {
         </aside>
         <main className="px-6 md:px-10 overflow-y-auto custom__scroll">
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
-            <h1 className="text-4xl font-bold">Info Roles</h1>
-            <Breadcrumbs param={location.search} />
+            <h1 className="text-4xl font-bold">Info Engagement</h1>
+            <Breadcrumbs param={`?infoId=${infoId}`} />
           </div>
 
           <div className="bg-white pt-8 pb-6 px-4 mt-8 lg:mt-4 custom__scroll overflow-x-auto ">
             {isFetching && !isLoading && <FetchingSpinner />}
-            {info?.error ? (
+            {infoEngagement?.error ? (
               <ServerError />
             ) : (
               <>
-                {(isLoading || info?.data.length === 0) && (
+                {(isLoading || infoEngagement?.data.length === 0) && (
                   <>
                     {isLoading ? (
                       <TableLoading count={20} cols={3} />
@@ -75,7 +73,7 @@ const InfoView = () => {
                   </>
                 )}
                 {error && <ServerError />}
-                {info?.data.map((item, key) => {
+                {infoEngagement?.data.map((item, key) => {
                   return (
                     <ul key={key}>
                       <li className="flex justify-end">
@@ -91,7 +89,7 @@ const InfoView = () => {
                       <li className="grid grid-cols-2">
                         <span>Status :</span>
                         <p>
-                          {item.info_is_active === 1 ? (
+                          {item.info_engagement_is_active === 1 ? (
                             <>
                               <Pills label="Active" bgc="bg-green-600" />
                             </>
@@ -104,11 +102,15 @@ const InfoView = () => {
                       </li>
                       <li className="grid grid-cols-2">
                         <span>Name : </span>
-                        <p>{item.info_name}</p>
+                        <p>{item.info_engagement_name}</p>
                       </li>
                       <li className="grid grid-cols-2">
                         <span>Description : </span>
-                        {item.info_description}
+                        {item.info_engagement_description}
+                      </li>
+                      <li className="grid grid-cols-2">
+                        <span>Info ID : </span>
+                        {item.info_engagement_info_id}
                       </li>
                     </ul>
                   );
@@ -118,10 +120,11 @@ const InfoView = () => {
           </div>
         </main>
       </section>
-      {store.isAdd && <ModalAddInfo itemEdit={itemEdit} />}
+      {store.isAdd && <ModalAddInfoEngagement itemEdit={itemEdit} />}
       {store.error && <ModalError />}
+      {store.success && <Toast />}
     </>
   );
 };
 
-export default InfoView;
+export default InfoEngagementView;

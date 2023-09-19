@@ -18,6 +18,7 @@ const Breadcrumbs = ({ param = "" }) => {
     .replace("-", " ")
     .split("/")
     .filter((crumb) => crumb !== "");
+  const isMain = crumbs[0];
 
   return (
     <>
@@ -27,7 +28,7 @@ const Breadcrumbs = ({ param = "" }) => {
           return (
             <li key={key}>
               <Link
-                to={`${devNavUrl}${currentLink}${param}`}
+                to={`${devNavUrl}${currentLink}${isMain === link ? "" : param}`}
                 onClick={handleClick}
               >
                 {link.replace("-", " ").replace("_", "/")}

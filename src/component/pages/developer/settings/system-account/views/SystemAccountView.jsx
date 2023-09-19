@@ -51,7 +51,7 @@ const SystemAccountView = () => {
           <Navigation menu="settings" submenu="settingsSystemAccount" />
         </aside>
         <main className="px-6 md:px-10">
-          {store.isMenuOpen ? <div className="overlay"></div> : ""}
+          
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
             <h1 className="text-4xl font-bold">System Account View</h1>
             <Breadcrumbs />

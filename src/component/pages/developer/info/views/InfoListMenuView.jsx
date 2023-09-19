@@ -2,12 +2,12 @@ import React from "react";
 import { BsChevronRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const InfoSubListView = ({ infoId }) => {
+const InfoListMenuView = ({ infoId }) => {
   return (
     <>
       <ul className="sub__list">
         <li>
-          <Link to={`/info/view?infoId=${infoId}`}>
+          <Link to={`/info/menu/view?infoId=${infoId}`}>
             <button className="w-full">
               <span>Information</span>
               <div className="sub__list__arrow">
@@ -17,7 +17,7 @@ const InfoSubListView = ({ infoId }) => {
           </Link>
         </li>
         <li>
-          <Link to={`/info/engagement?infoId=${infoId}`}>
+          <Link to={`/info/menu/engagement?infoId=${infoId}`}>
             <button className="w-full flex justify-between items-center">
               <span>Engagement</span>
               <div className="sub__list__arrow">
@@ -31,4 +31,4 @@ const InfoSubListView = ({ infoId }) => {
   );
 };
 
-export default InfoSubListView;
+export default InfoListMenuView;

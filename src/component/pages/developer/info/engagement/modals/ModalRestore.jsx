@@ -2,14 +2,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
-import { StoreContext } from "../../../../../../store/StoreContext";
-import { queryData } from "../../../../../helpers/queryData";
 import {
   setIsRestore,
   setMessage,
   setSuccess,
   setValidate,
 } from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import { queryData } from "../../../../../helpers/queryData";
 
 const ModalRestore = ({ item, setItem }) => {
   const { store, dispatch } = React.useContext(StoreContext);
@@ -18,13 +18,13 @@ const ModalRestore = ({ item, setItem }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/controllers/developer/client/list/active.php?clientListId=${item.client_list_aid}`,
+        `/v1/controllers/developer/info/engagement/active.php?infoEngagementId=${item.info_engagement_aid}`,
         "put",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: `client-list` });
+      queryClient.invalidateQueries({ queryKey: `info-engagement` });
       if (data.success) {
         dispatch(setIsRestore(false));
         dispatch(setSuccess(true));
@@ -71,9 +71,7 @@ const ModalRestore = ({ item, setItem }) => {
             <h3 className="text-sm pb-4">
               Are you sure you want to restore this?
             </h3>
-            <p className="font-bold text-base">
-              "{item.client_list_account_number}"
-            </p>
+            <p className="font-bold text-base">"{item.info_engagement_name}"</p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button

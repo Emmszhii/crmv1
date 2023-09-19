@@ -18,13 +18,13 @@ const ModalDelete = ({ item, setItem }) => {
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
-        `/v1/controllers/developer/client/list/client-list.php?clientListId=${item.client_list_aid}`,
+        `/v1/controllers/developer/info/engagement/engagement.php?infoEngagementId=${item.info_engagement_aid}`,
         "delete",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: `client-list` });
+      queryClient.invalidateQueries({ queryKey: `info-engagement` });
       //   dispatch(setIsRestore(false));
 
       if (data.success) {
@@ -73,9 +73,7 @@ const ModalDelete = ({ item, setItem }) => {
             <h3 className="text-sm pb-4">
               Are you sure you want to delete this?
             </h3>
-            <p className="font-bold text-base">
-              "{item.client_list_account_number}"
-            </p>
+            <p className="font-bold text-base">"{item.info_engagement_name}"</p>
           </div>
           <div className="flex flex-col gap-2 mx-5 mb-6 mt-10 text-sm font-thin">
             <button

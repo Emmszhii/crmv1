@@ -7,15 +7,13 @@ import { StoreContext } from "../../../../../store/StoreContext";
 import { queryData } from "../../../../helpers/queryData";
 import {
   setError,
- 
   setIsAdd,
- 
   setMessage,
   setSuccess,
   setValidate,
 } from "../../../../../store/StoreAction";
 import { handleEscape } from "../../../../helpers/functions-general";
-import { InputText } from "../../../../helpers/FormInputs";
+import { InputText, InputTextArea } from "../../../../helpers/FormInputs";
 import ButtonSpinner from "../../../../partials/spinners/ButtonSpinner";
 
 const ModalAddInfo = ({ itemEdit }) => {
@@ -51,8 +49,6 @@ const ModalAddInfo = ({ itemEdit }) => {
   const initVal = {
     info_name: itemEdit ? itemEdit.info_name : "",
     info_description: itemEdit ? itemEdit.info_description : "",
-    info_roles_id: itemEdit ? itemEdit.info_roles_id : "",
-    info_engagement_id: itemEdit ? itemEdit.info_engagement_id : "",
 
     info_name_old: itemEdit ? itemEdit.info_name : "",
   };
@@ -60,8 +56,6 @@ const ModalAddInfo = ({ itemEdit }) => {
   const yupSchema = Yup.object({
     info_name: Yup.string().required("Required"),
     info_description: Yup.string().required("Required"),
-    info_roles_id: Yup.string().required("Required"),
-    info_engagement_id: Yup.string().required("Required"),
   });
 
   const handleClose = () => {
@@ -105,28 +99,10 @@ const ModalAddInfo = ({ itemEdit }) => {
                         />
                       </div>
                       <div className="form__wrap">
-                        <InputText
+                        <InputTextArea
                           label="Description"
                           type="text"
                           name="info_description"
-                          disabled={mutation.isLoading}
-                        />
-                      </div>
-                      <div className="form__wrap">
-                        <InputText
-                          label="Role ID"
-                          type="text"
-                          number="number"
-                          name="info_roles_id"
-                          disabled={mutation.isLoading}
-                        />
-                      </div>
-                      <div className="form__wrap">
-                        <InputText
-                          label="Engagement ID"
-                          type="text"
-                          number="number"
-                          name="info_engagement_id"
                           disabled={mutation.isLoading}
                         />
                       </div>

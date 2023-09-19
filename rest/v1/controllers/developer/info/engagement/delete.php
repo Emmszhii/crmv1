@@ -3,17 +3,17 @@
 $conn = null;
 $conn = checkDbConnection();
 // make instance of classes
-$infoRoles = new Roles($conn);
+$infoEngagement = new Engagement($conn);
 // get $_GET data
 $error = [];
 $returnData = [];
-if (array_key_exists("infoRolesId", $_GET)) {
+if (array_key_exists("infoEngagementId", $_GET)) {
     // get data
-    $infoRoles->info_roles_aid = $_GET['infoRolesId'];
-    checkId($infoRoles->info_roles_aid);
+    $infoEngagement->info_engagement_aid = $_GET['infoEngagementId'];
+    checkId($infoEngagement->info_engagement_aid);
 
-    $query = checkDelete($infoRoles);
-    returnSuccess($infoRoles, "Info Roles", $query);
+    $query = checkDelete($infoEngagement);
+    returnSuccess($infoEngagement, "Info Engagement", $query);
 }
 
 // return 404 error if endpoint not available

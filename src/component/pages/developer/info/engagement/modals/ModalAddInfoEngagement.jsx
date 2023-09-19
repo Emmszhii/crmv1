@@ -12,26 +12,30 @@ import {
 } from "../../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import { InputText, InputTextArea } from "../../../../../helpers/FormInputs";
-import { handleEscape } from "../../../../../helpers/functions-general";
+import {
+  getUrlParam,
+  handleEscape,
+} from "../../../../../helpers/functions-general";
 import { queryData } from "../../../../../helpers/queryData";
 import ButtonSpinner from "../../../../../partials/spinners/ButtonSpinner";
 
-const ModalAddInfoRoles = ({ itemEdit }) => {
+const ModalAddInfoEngagement = ({ itemEdit = null }) => {
   const { dispatch } = React.useContext(StoreContext);
   const queryClient = useQueryClient();
+  const infoId = getUrlParam().get("infoId");
 
   const mutation = useMutation({
     mutationFn: (values) =>
       queryData(
         itemEdit
-          ? `/v1/controllers/developer/info/info.php?infoId=${itemEdit.info_aid}` //update
-          : "/v1/controllers/developer/info/info.php", //add
+          ? `/v1/controllers/developer/info/engagement/engagement.php?infoEngagementId=${itemEdit.info_engagement_aid}` //update
+          : "/v1/controllers/developer/info/engagement/engagement.php", //add
         itemEdit ? "put" : "post",
         values
       ),
     onSuccess: (data) => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["info-roles"] });
+      queryClient.invalidateQueries({ queryKey: ["info-engagement"] });
       if (data.success) {
         dispatch(setIsAdd(false));
         dispatch(setSuccess(true));
@@ -47,15 +51,21 @@ const ModalAddInfoRoles = ({ itemEdit }) => {
   });
 
   const initVal = {
-    info_name: itemEdit ? itemEdit.info_name : "",
-    info_description: itemEdit ? itemEdit.info_description : "",
+    info_engagement_name: itemEdit ? itemEdit.info_engagement_name : "",
+    info_engagement_description: itemEdit
+      ? itemEdit.info_engagement_description
+      : "",
+    info_engagement_info_id: itemEdit
+      ? itemEdit.info_engagement_info_id
+      : infoId,
 
-    info_name_old: itemEdit ? itemEdit.info_name : "",
+    info_engagement_name_old: itemEdit ? itemEdit.info_engagement_name : "",
   };
 
   const yupSchema = Yup.object({
-    info_name: Yup.string().required("Required"),
-    info_description: Yup.string().required("Required"),
+    info_engagement_name: Yup.string().required("Required"),
+    info_engagement_description: Yup.string().required("Required"),
+    info_engagement_info_id: Yup.string().required("Required"),
   });
 
   const handleClose = () => {
@@ -97,7 +107,7 @@ const ModalAddInfoRoles = ({ itemEdit }) => {
                         <InputText
                           label="Name"
                           type="text"
-                          name="info_name"
+                          name="info_engagement_name"
                           disabled={mutation.isLoading}
                         />
                       </div>
@@ -105,8 +115,16 @@ const ModalAddInfoRoles = ({ itemEdit }) => {
                         <InputTextArea
                           label="Description"
                           type="text"
-                          name="info_description"
+                          name="info_engagement_description"
                           disabled={mutation.isLoading}
+                        />
+                      </div>
+                      <div className="form__wrap">
+                        <InputText
+                          label="Info ID"
+                          id="id"
+                          name="info_engagement_info_id"
+                          disabled={true}
                         />
                       </div>
                     </div>
@@ -144,4 +162,4 @@ const ModalAddInfoRoles = ({ itemEdit }) => {
   );
 };
 
-export default ModalAddInfoRoles;
+export default ModalAddInfoEngagement;

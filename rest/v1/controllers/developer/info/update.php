@@ -15,13 +15,11 @@ if (array_key_exists("infoId", $_GET)) {
     $info->info_aid = $_GET['infoId'];
     $info->info_name = checkIndex($data, "info_name");
     $info->info_description = checkIndex($data, "info_description");
-
-
     $info->info_updated_at = date("Y-m-d H:i:s");
     checkId($info->info_aid);
 
     // check name
-    isNameExist($info, $info->info_name);
+    // isNameExist($info, $info->info_name);
     // update
     $query = checkUpdate($info);
     returnSuccess($info, "Info", $query);

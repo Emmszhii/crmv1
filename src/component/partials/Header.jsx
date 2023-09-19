@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-primary py-5 md:py-3 px-4 flex justify-between items-center">
+      <header className="bg-primary py-5 md:py-3 px-4 flex justify-between items-center relative z-50">
         <div className="flex items-center">
           <div
             className={`toggle__btn ${store.isMenuOpen ? "active" : ""}`}
@@ -30,6 +30,11 @@ const Header = () => {
           </button>
         </div>
       </header>
+      {store.isMenuOpen ? (
+        <div className="overlay" onClick={handleToggleMenu}></div>
+      ) : (
+        ""
+      )}
     </>
   );
 };

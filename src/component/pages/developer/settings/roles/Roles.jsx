@@ -35,7 +35,7 @@ const Roles = () => {
           <Navigation menu="settings" submenu="settingsRoles" />
         </aside>
         <main className="px-6 md:px-10 overflow-y-auto custom__scroll">
-          {store.isMenuOpen ? <div className="overlay"></div> : ""}
+          
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
             <h1 className="text-4xl font-bold">Roles</h1>
             <Breadcrumbs />
