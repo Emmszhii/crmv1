@@ -124,6 +124,13 @@ const Navigation = ({ menu, submenu = "null" }) => {
                     Bank Detail
                   </Link>
                 </li>
+                <li
+                  className={`sub__link ${
+                    submenu === "settingsUsers" ? "active" : ""
+                  }`}
+                >
+                  <Link to={`${devNavUrl}/settings/users`}>Users</Link>
+                </li>
               </ul>
             </div>
           </li>

@@ -1,19 +1,18 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Account from "./component/pages/developer/client/account/Account";
-import AccountView from "./component/pages/developer/client/account/views/AccountView";
-import ClientList from "./component/pages/developer/client/list/ClientList";
-import ClientListView from "./component/pages/developer/client/list/views/ClientListView";
+import CreatePassword from "./component/pages/developer/access/create-password/CreatePassword";
+import ForgotPassword from "./component/pages/developer/access/forgot-password/ForgotPassword";
+import OtherLogin from "./component/pages/developer/access/login/OtherLogin";
+import SystemLogin from "./component/pages/developer/access/login/SystemLogin";
 import Info from "./component/pages/developer/info/Info";
 import InfoEngagement from "./component/pages/developer/info/engagement/InfoEngagement";
+import InfoEngagementView from "./component/pages/developer/info/engagement/views/InfoEngagementView";
 import InfoMenuView from "./component/pages/developer/info/views/InfoMenuView";
 import InfoView from "./component/pages/developer/info/views/InfoView";
-import BankDetails from "./component/pages/developer/settings/bank-details/BankDetails";
 import Roles from "./component/pages/developer/settings/roles/Roles";
-import SystemAccount from "./component/pages/developer/settings/system-account/SystemAccount";
-import SystemAccountView from "./component/pages/developer/settings/system-account/views/SystemAccountView";
+import { routesClient } from "./routes/RoutesClient";
+import { routesSystem } from "./routes/RoutesSystem";
 import { StoreProvider } from "./store/StoreContext";
-import InfoEngagementView from "./component/pages/developer/info/engagement/views/InfoEngagementView";
 
 function App() {
   // Create a client
@@ -25,25 +24,12 @@ function App() {
           <Router>
             <Routes>
               <Route path={"*"} element={<Roles />} />
-              {/* CLIENT */}
-              <Route path={"/client/list"} element={<ClientList />} />
-              <Route path={"/client/list/view"} element={<ClientListView />} />
-              <Route path={"/client/account"} element={<Account />} />
-              <Route path={"/client/account/view"} element={<AccountView />} />
-              {/* SETTINGS */}
-              <Route path={"/settings/roles"} element={<Roles />} />
-              <Route
-                path={"/settings/bank-details"}
-                element={<BankDetails />}
-              />
-              <Route
-                path={"/settings/system-account"}
-                element={<SystemAccount />}
-              />
-              <Route
-                path={"/settings/system-account/view"}
-                element={<SystemAccountView />}
-              />
+              {/* Login */}
+              <Route path={"/login"} element={<OtherLogin />} />
+              <Route path={"/system/login"} element={<SystemLogin />} />
+              <Route path={"/forgot-password"} element={<ForgotPassword />} />
+              <Route path={"/create-password"} element={<CreatePassword />} />
+
               {/* MY INFO */}
               <Route path={"/info"} element={<Info />} />
               <Route path={"/info/menu"} element={<InfoMenuView />} />
@@ -56,6 +42,16 @@ function App() {
                 path={"/info/menu/engagement/view"}
                 element={<InfoEngagementView />}
               />
+
+              {/* CLIENT ROUTES */}
+              {routesClient.map(({ ...routesProps }, key) => {
+                return <Route key={key} {...routesProps} />;
+              })}
+
+              {/* SYSTEM ROUTES */}
+              {routesSystem.map(({ ...routesProps }, key) => {
+                return <Route key={key} {...routesProps} />;
+              })}
             </Routes>
           </Router>
         </StoreProvider>

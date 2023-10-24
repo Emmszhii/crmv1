@@ -93,7 +93,7 @@
   }
   input,
   select {
-    @apply border border-dark/50 p-2 rounded-lg w-full h-[40px] outline-none disabled:cursor-not-allowed text-[12px];
+    @apply border border-dark/50 p-2 rounded-md w-full h-[40px] outline-none disabled:cursor-not-allowed text-[12px];
   }
   textarea {
     @apply block border border-solid outline-none border-dark/50 p-2 rounded-lg w-full h-28 resize-none text-[12px];
