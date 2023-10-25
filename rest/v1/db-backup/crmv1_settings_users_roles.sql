@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 08:09 AM
+-- Generation Time: Oct 24, 2023 at 08:40 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `crm_training_settings_roles`
+-- Table structure for table `crmv1_settings_users_roles`
 --
 
-CREATE TABLE `crm_training_settings_roles` (
+CREATE TABLE `crmv1_settings_users_roles` (
   `settings_roles_aid` int(11) NOT NULL,
   `settings_roles_name` varchar(20) NOT NULL,
   `settings_roles_description` text NOT NULL,
@@ -42,9 +42,9 @@ CREATE TABLE `crm_training_settings_roles` (
 --
 
 --
--- Indexes for table `crm_training_settings_roles`
+-- Indexes for table `crmv1_settings_users_roles`
 --
-ALTER TABLE `crm_training_settings_roles`
+ALTER TABLE `crmv1_settings_users_roles`
   ADD PRIMARY KEY (`settings_roles_aid`);
 
 --
@@ -52,9 +52,9 @@ ALTER TABLE `crm_training_settings_roles`
 --
 
 --
--- AUTO_INCREMENT for table `crm_training_settings_roles`
+-- AUTO_INCREMENT for table `crmv1_settings_users_roles`
 --
-ALTER TABLE `crm_training_settings_roles`
+ALTER TABLE `crmv1_settings_users_roles`
   MODIFY `settings_roles_aid` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 

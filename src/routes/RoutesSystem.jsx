@@ -4,6 +4,9 @@ import Roles from "../component/pages/developer/settings/roles/Roles";
 import SystemAccount from "../component/pages/developer/settings/system-account/SystemAccount";
 import SystemAccountView from "../component/pages/developer/settings/system-account/views/SystemAccountView";
 import SettingsUsers from "../component/pages/developer/settings/users/SettingsUsers";
+import UsersOthers from "../component/pages/developer/settings/users/other/UsersOthers";
+import UsersRoles from "../component/pages/developer/settings/users/role/UsersRoles";
+import UsersSystem from "../component/pages/developer/settings/users/system/UsersSystem";
 
 export const routesSystem = [
   {
@@ -43,6 +46,30 @@ export const routesSystem = [
     element: (
       //   <ProtectedRouteOther>
       <SettingsUsers />
+      //   </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/settings/users/other`,
+    element: (
+      //   <ProtectedRouteOther>
+      <UsersOthers />
+      //   </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/settings/users/roles`,
+    element: (
+      //   <ProtectedRouteOther>
+      <UsersRoles />
+      //   </ProtectedRouteOther>
+    ),
+  },
+  {
+    path: `${devNavUrl}/settings/users/system`,
+    element: (
+      //   <ProtectedRouteOther>
+      <UsersSystem />
       //   </ProtectedRouteOther>
     ),
   },

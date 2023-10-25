@@ -3,40 +3,38 @@ import {
   setIsAdd,
   setIsMenuOpen,
   setIsSettingsOpen,
-} from "../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../store/StoreContext";
-import Breadcrumbs from "../../../../partials/Breadcrumbs";
-import Header from "../../../../partials/Header";
-import ModalError from "../../../../partials/Modals/ModalError";
-import Navigation from "../../../../partials/Navigation";
-import Toast from "../../../../partials/Toast";
-import PlusSvg from "../../../../svg/PlusSvg";
+} from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
+import Breadcrumbs from "../../../../../partials/Breadcrumbs";
+import Header from "../../../../../partials/Header";
+import Navigation from "../../../../../partials/Navigation";
+import UsersRolesTable from "./UsersRolesTable";
+import PlusSvg from "../../../../../svg/PlusSvg";
 import ModalAddRoles from "./modals/ModalAddRoles";
-import RolesTable from "./RolesTable";
+import Toast from "../../../../../partials/Toast";
+import ModalError from "../../../../../partials/Modals/ModalError";
 
-const Roles = () => {
-  const [itemEdit, setItemEdit] = React.useState();
+const UsersRoles = () => {
   const { store, dispatch } = React.useContext(StoreContext);
+  const [itemEdit, setItemEdit] = React.useState();
 
   const handleAdd = () => {
     dispatch(setIsAdd(true));
     setItemEdit(null);
   };
-  
+
   React.useEffect(() => {
     dispatch(setIsSettingsOpen(true));
     dispatch(setIsMenuOpen(false));
   }, []);
-
   return (
     <>
       <Header />
       <section className="main__grid">
         <aside className={`${store.isMenuOpen ? "active" : ""}`}>
-          <Navigation menu="settings" submenu="settingsRoles" />
+          <Navigation menu="settings" submenu="settingsUsers" />
         </aside>
         <main className="px-6 md:px-10 overflow-y-auto custom__scroll">
-          
           <div className="mt-8 mb-8 lg:mb-0 flex items-center justify-center flex-col gap-2 lg:flex-row lg:justify-between">
             <h1 className="text-4xl font-bold">Roles</h1>
             <Breadcrumbs />
@@ -49,8 +47,8 @@ const Roles = () => {
               <PlusSvg /> Add Role
             </button>
           </div>
-          <div className="bg-white pt-8 pb-6 mt-8 lg:mt-4 custom__scroll overflow-x-auto">
-            <RolesTable setItemEdit={setItemEdit} />
+          <div className="bg-white pt-8 pb-6 mt-8 my-4 px-4 custom__scroll overflow-x-auto relative">
+            <UsersRolesTable />
           </div>
         </main>
       </section>
@@ -61,4 +59,4 @@ const Roles = () => {
   );
 };
 
-export default Roles;
+export default UsersRoles;
